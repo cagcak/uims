@@ -61,7 +61,7 @@
             <version>2.1.0</version>
         </dependency>
 
-<!--        <dependency>
+<!--       <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>org.eclipse.persistence.antlr</artifactId>
             <version>SNAPSHOT</version>
