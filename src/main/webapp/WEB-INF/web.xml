@@ -2,6 +2,20 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <description>University Information Management System</description>
     <display-name>UIMS</display-name>
+    
+    <welcome-file-list>
+        <welcome-file>/GetAndroidRequest</welcome-file>
+    </welcome-file-list>
+    
+    <filter>
+        <filter-name>ShiroFilter</filter-name>
+        <filter-class>org.apache.shiro.web.servlet.IniShiroFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ShiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
     <servlet>
         <servlet-name>GetAndroidRequest</servlet-name>
         <servlet-class>iaau.uims.servlet.GetAndroidRequest</servlet-class>
