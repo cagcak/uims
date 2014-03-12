@@ -10,6 +10,7 @@ package iaau.uims.jdbc.dao;
 
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
+import iaau.uims.jdbc.model.user.Roles;
 import iaau.uims.jdbc.model.user.Users;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,6 +31,7 @@ public class UsersDAO {
 //    private static final String INSERT_USER_QUERY = "INSERT INTO USERS VALUES(?,?)";
 //    private static final String RETRIEVE_USER_QUERY_BY_TABLEID = "SELECT * FROM USERS WHERE iduser = ?";
 //    private static final String RETRIEVE_USER_QUERY_BY_IDNUMBER = "SELECT * FROM USERS WHERE idnumber = ?";
+//    private static final String RETRIEVE_USERROLE_QUERY_BY_IDNUMBER = "SELECT USERS.idnumber, ROLES.user_role FROM ROLES INNER JOIN USERS ON ROLES.idnumber  = USERS.idnumber;";
 //    private static final String RETRIEVE_ALL_USER_QUERY = "SELECT * FROM USERS";
 //    private static final String UPDATE_USER_QUERY = "UPDATE USERS SET idnumber = ?, password = ? WHERE iduser = ?";
 //    private static final String DELETE_USER_QUERY = "DELETE FROM USERS WHERE idnumber = ?";
@@ -74,9 +76,64 @@ public class UsersDAO {
         return user;
     }
     
-    public Users getUserByIDnumber(int idNumber) throws SQLException
+    public Users getUserByIDnumber(String IDnumber) throws SQLException
     {
-        return null;
+//      String query = RETRIEVE_USER_QUERY_BY_IDNUMBER;
+        String query = "SELECT * FROM USERS WHERE idnumber = " + IDnumber;
+        ResultSet rs = null;
+        Users user = null;
+
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.createStatement();
+
+//            statement = connection.prepareStatement(query);
+//            statement.setString(1, IDnumber);
+            rs = statement.executeQuery(query);
+
+            if (rs.next()) {
+                user = new Users();
+                user.setIduser(rs.getInt("iduser"));
+                user.setIdnumber(rs.getString("idnumber"));
+                user.setPassword(rs.getString("password"));
+            }
+
+        } finally {
+            ConnectionUtility.close(rs);
+            ConnectionUtility.close(statement);
+            ConnectionUtility.close(connection);
+        }
+
+        return user;
+    }
+    
+    public Roles getUserRoleByIDnumber(String IDnumber) throws SQLException
+    {
+        String query = "SELECT USERS.idnumber, ROLES.user_role \n"
+                + "FROM ROLES\n"
+                + "INNER JOIN USERS \n"
+                + "ON ROLES." + IDnumber + " = " +"USERS." + IDnumber;
+        ResultSet rs = null;
+        Roles role = null;
+
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.createStatement();
+            
+            rs = statement.executeQuery(query);
+
+            if (rs.next()) {
+                role = new Roles();
+                role.setUSERS_idusers(rs.getInt("USERS_idusers"));
+                role.setIdnumber(rs.getString("idnumber"));
+                role.setUserRole(rs.getString("user_role"));
+            }
+        }finally{
+            ConnectionUtility.close(rs);
+            ConnectionUtility.close(statement);
+            ConnectionUtility.close(connection);
+        }
+        return role;
     }
     
 }
