@@ -3,10 +3,10 @@ ${licenseFirst}
 </#if>
 ${licensePrefix}This class is under a licence of IAAU
 ${licensePrefix}University Information Management System ${licensePrefix}
-${licensePrefix}---------------------------------------------------- ${licensePrefix}
-${licensePrefix}https://github.com/cagricakir/uims.git ${licensePrefix}
-${licensePrefix}   ------          ----------           ---------------     ${licensePrefix}
-${licensePrefix}    add ----->  commit  ----->  remote>push    ${licensePrefix}
+${licensePrefix}---------------------------------------- ${licensePrefix}
+${licensePrefix}  https://github.com/cagricakir/uims.git ${licensePrefix}
+${licensePrefix} ------    ----------     -------------  ${licensePrefix}
+${licensePrefix}  add -----> commit -----> remote>push   ${licensePrefix}
 <#if licenseLast??>
 ${licenseLast}
 </#if>

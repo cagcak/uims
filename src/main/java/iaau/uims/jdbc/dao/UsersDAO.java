@@ -107,33 +107,4 @@ public class UsersDAO {
         return user;
     }
     
-    public Roles getUserRoleByIDnumber(String IDnumber) throws SQLException
-    {
-        String query = "SELECT USERS.idnumber, ROLES.user_role \n"
-                + "FROM ROLES\n"
-                + "INNER JOIN USERS \n"
-                + "ON ROLES." + IDnumber + " = " +"USERS." + IDnumber;
-        ResultSet rs = null;
-        Roles role = null;
-
-        try {
-            connection = ConnectionFactory.getConnection();
-            statement = connection.createStatement();
-            
-            rs = statement.executeQuery(query);
-
-            if (rs.next()) {
-                role = new Roles();
-                role.setUSERS_idusers(rs.getInt("USERS_idusers"));
-                role.setIdnumber(rs.getString("idnumber"));
-                role.setUserRole(rs.getString("user_role"));
-            }
-        }finally{
-            ConnectionUtility.close(rs);
-            ConnectionUtility.close(statement);
-            ConnectionUtility.close(connection);
-        }
-        return role;
-    }
-    
 }

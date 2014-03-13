@@ -13,11 +13,20 @@ public class SuccessReport {
     
     private int id_success;
     private String subject_name;
-    private String houres;
+    private String hours;
     private String midterm;
     private String final1;
     private String average;
     private String attandance;
+    private String semester;
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
     private String academic_year;
     private int USERS_iduser;
 
@@ -37,12 +46,12 @@ public class SuccessReport {
         this.subject_name = subject_name;
     }
 
-    public String getHoures() {
-        return houres;
+    public String getHours() {
+        return hours;
     }
 
-    public void setHoures(String houres) {
-        this.houres = houres;
+    public void setHours(String hours) {
+        this.hours = hours;
     }
 
     public String getMidterm() {
@@ -95,7 +104,7 @@ public class SuccessReport {
 
     @Override
     public String toString() {
-        return "SuccessReport{" + "id_success=" + id_success + ", subject_name=" + subject_name + ", houres=" + houres + ", midterm=" + midterm + ", final1=" + final1 + ", average=" + average + ", attandance=" + attandance + ", academic_year=" + academic_year + ", USERS_iduser=" + USERS_iduser + '}';
+        return "SuccessReport{" + "id_success=" + id_success + ", subject_name=" + subject_name + ", houres=" + hours + ", midterm=" + midterm + ", final1=" + final1 + ", average=" + average + ", attandance=" + attandance + ", academic_year=" + academic_year + ", USERS_iduser=" + USERS_iduser + '}';
     }
     
     
