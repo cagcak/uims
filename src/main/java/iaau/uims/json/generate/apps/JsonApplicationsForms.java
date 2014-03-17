@@ -7,14 +7,13 @@
  *   add -----> commit -----> remote>push    * 
  */
 
-package iaau.uims.json.generate;
+package iaau.uims.json.generate.apps;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
-import iaau.uims.jdbc.model.user.Users;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,40 +23,46 @@ import java.sql.Statement;
  *
  * @author Çağrı Çakır
  */
-public class GenerateJSONfromDB {
+public class JsonApplicationsForms {
+
+    public JsonApplicationsForms() {
+    }
     
-  
-    public static void main (String[]args) throws SQLException
+    private Connection connection;
+    private Statement statement;
+
+    public void GenerateAppsFormsAsJson(String idNumber) throws SQLException
     {
-        
-    Connection connection = null;
-    Statement statement = null;
-    
-//      String query = RETRIEVE_USER_QUERY_BY_IDNUMBER;
-        String query = "SELECT * FROM USERS";
+        String query = "SELECT USERS.idnumber, APPLICATIONS_FORMS.reference_type, "
+                + "APPLICATIONS_FORMS.`language` "
+                + "FROM USERS "
+                + "INNER JOIN APPLICATIONS_FORMS "
+                + "ON USERS.iduser=APPLICATIONS_FORMS.`USERS_iduser` "
+                + "WHERE USERS.idnumber=" + idNumber;
+
         ResultSet rs = null;
         
-
         try {
             connection = ConnectionFactory.getConnection();
             statement = connection.createStatement();
 
-//            statement = connection.prepareStatement(query);
-//            statement.setString(1, IDnumber);
             rs = statement.executeQuery(query);
 
             JsonObject jsonResponse = new JsonObject();
             JsonArray data = new JsonArray();
-            
+
             if (rs.next()) {
                 JsonArray row = new JsonArray();
-                row.add(new JsonPrimitive(rs.getString("iduser")));
-                row.add(new JsonPrimitive(rs.getString("idnumber")));
-                row.add(new JsonPrimitive(rs.getString("password")));
+                row.add(new JsonPrimitive(rs.getString("reference_type")));
+                row.add(new JsonPrimitive(rs.getString("language")));
                 data.add(row);
             }
-            jsonResponse.add("aaData", data);
-        System.out.println(data);
+
+            jsonResponse.add("jsonAppsForms", data);
+            System.out.println("JSONArray form: " + data);
+
+            String a = data.toString();
+            System.out.println("String form: " + a);
 
         } finally {
             ConnectionUtility.close(rs);
@@ -66,4 +71,4 @@ public class GenerateJSONfromDB {
         }
     }
     
-    }
+}
