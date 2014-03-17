@@ -6,10 +6,13 @@
 
 package iaau.uims.servlet;
 
-import iaau.uims.jpa.service.UsersFacadeREST;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +27,7 @@ public class GetAndroidRequest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        doPost(request, response);
        
     }
 
@@ -31,6 +35,7 @@ public class GetAndroidRequest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         
     }
 
