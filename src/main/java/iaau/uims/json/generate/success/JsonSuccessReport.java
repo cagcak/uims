@@ -54,7 +54,8 @@ public class JsonSuccessReport {
             JsonObject jsonResponse = new JsonObject();
             JsonArray data = new JsonArray();
 
-            if (rs.next()) {
+            
+            while (rs.next()) {
                 JsonArray row = new JsonArray();
                 row.add(new JsonPrimitive(rs.getString("subject_name")));
                 row.add(new JsonPrimitive(rs.getString("hours")));

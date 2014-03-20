@@ -45,6 +45,7 @@ public class JsonUser {
             JsonObject jsonResponse = new JsonObject();
             JsonArray data = new JsonArray();
 
+//          while (rs.next())
             if (rs.next()) {
                 JsonArray row = new JsonArray();
                 row.add(new JsonPrimitive(rs.getString("idnumber")));

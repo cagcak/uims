@@ -50,7 +50,7 @@ public class JsonGeneralInfo {
             JsonObject jsonResponse = new JsonObject();
             JsonArray data = new JsonArray();
 
-            if (rs.next())
+            while (rs.next())
             {
                 JsonArray row = new JsonArray();
                 row.add(new JsonPrimitive(rs.getString("faculty")));

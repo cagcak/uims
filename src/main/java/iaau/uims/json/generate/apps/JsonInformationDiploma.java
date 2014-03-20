@@ -56,7 +56,7 @@ public class JsonInformationDiploma {
             JsonObject jsonResponse = new JsonObject();
             JsonArray data = new JsonArray();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 JsonArray row = new JsonArray();
                 row.add(new JsonPrimitive(rs.getString("firstname")));
                 row.add(new JsonPrimitive(rs.getString("lastname")));

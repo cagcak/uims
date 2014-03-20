@@ -53,7 +53,7 @@ public class JsonRegistration {
             JsonObject jsonResponse = new JsonObject();
             JsonArray data = new JsonArray();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 JsonArray row = new JsonArray();
                 row.add(new JsonPrimitive(rs.getString("subject_code")));
                 row.add(new JsonPrimitive(rs.getString("subject_name")));
