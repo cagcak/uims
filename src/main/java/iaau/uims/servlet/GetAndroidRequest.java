@@ -27,6 +27,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GetAndroidRequest extends HttpServlet {
 
+    public GetAndroidRequest() {
+        super();
+    }
+
     private static final long serialVersionUID = 1L;
     
     // This will store all received users at the same session
@@ -45,6 +49,8 @@ public class GetAndroidRequest extends HttpServlet {
 
         //  Send List<Users> as JSON to client
         mapper.writeValue(response.getOutputStream(), users);
+        String servletInfo = getServletInfo();
+        System.out.println(servletInfo);
     }
 
 
@@ -92,7 +98,9 @@ public class GetAndroidRequest extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "This java servlet takes \"ID number\" and \"password\" user credentials "
+                + "by JSON and parses, converts, assigns as a string value to add the list"
+                + "called \"users\" with a proper JSON form. ";
     }// </editor-fold>
 
 }

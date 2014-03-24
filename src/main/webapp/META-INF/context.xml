@@ -1,27 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context 
-    antiJARLocking="true" 
-    path="/UIMS"
-    reloadable="true" 
-    debug="5"
-    docBase="/UIMS">
-        
-    <Resource
-        auth="Container"
-        driverClassName="com.mysql.jdbc.Driver"
-        maxActive="100" 
-        maxIdle="30" 
-        maxWait="10000" 
-        name="jdbc/uims_db"
-        username="root"
-        password="00011011" 
-        pooling="false" 
-        removeAbandoned="true"
-        removeAbandonedTimeout="30" 
-        type="javax.sql.DataSource" 
-        url="jdbc:mysql://localhost:1990/uims_db?zeroDateTimeBehavior=convertToNull" 
-        autoReconnect="true" 
-        testOnBorrow="true" 
-        validationQuery="select 1" />
-        
+<Context antiJARLocking="true" debug="5" docBase="/UIMS" path="/UIMS" reloadable="true">
+  <Resource auth="Container" autoReconnect="true" driverClassName="com.mysql.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/uims_db" password="00011011" pooling="false" removeAbandoned="true" removeAbandonedTimeout="30" testOnBorrow="true" type="javax.sql.DataSource" url="jdbc:mysql://localhost:1990/uims_db?zeroDateTimeBehavior=convertToNull" username="root" validationQuery="select 1"/>
 </Context>
