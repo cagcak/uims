@@ -11,7 +11,7 @@ package iaau.uims.jdbc.model.apps;
  */
 public class Registration {
     
-    private int idRegistration;
+    private int id_registration;
     private String subject_code;
     private String subject_name;
     private String semester;
@@ -19,14 +19,14 @@ public class Registration {
     private String hours;
     private String credits;
     private String registration_status;
-    private int USERS_iduser;
+    private String USERS_idnumber;
 
-    public int getIdRegistration() {
-        return idRegistration;
+    public int getId_registration() {
+        return id_registration;
     }
 
-    public void setIdRegistration(int idRegistration) {
-        this.idRegistration = idRegistration;
+    public void setId_registration(int id_registration) {
+        this.id_registration = id_registration;
     }
 
     public String getSubject_code() {
@@ -85,18 +85,19 @@ public class Registration {
         this.registration_status = registration_status;
     }
 
-    public int getUSERS_iduser() {
-        return USERS_iduser;
+    public String getUSERS_idnumber() {
+        return USERS_idnumber;
     }
 
-    public void setUSERS_iduser(int USERS_iduser) {
-        this.USERS_iduser = USERS_iduser;
+    public void setUSERS_idnumber(String USERS_idnumber) {
+        this.USERS_idnumber = USERS_idnumber;
     }
 
     @Override
     public String toString() {
-        return "Registration{" + "idRegistration=" + idRegistration + ", subject_code=" + subject_code + ", subject_name=" + subject_name + ", semester=" + semester + ", year=" + year + ", hours=" + hours + ", credits=" + credits + ", registration_status=" + registration_status + ", USERS_iduser=" + USERS_iduser + '}';
+        return "Registration{" + "id_registration=" + id_registration + ", subject_code=" + subject_code + ", subject_name=" + subject_name + ", semester=" + semester + ", year=" + year + ", hours=" + hours + ", credits=" + credits + ", registration_status=" + registration_status + ", USERS_idnumber=" + USERS_idnumber + '}';
     }
+
     
     
 }

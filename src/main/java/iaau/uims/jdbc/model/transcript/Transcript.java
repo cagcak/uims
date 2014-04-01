@@ -18,7 +18,7 @@ public class Transcript {
     private String year;
     private String credits;
     private String average;
-    private int USERS_iduser;
+    private String USERS_idnumber;
 
     public int getId_transcript() {
         return id_transcript;
@@ -76,18 +76,20 @@ public class Transcript {
         this.average = average;
     }
 
-    public int getUSERS_iduser() {
-        return USERS_iduser;
+    public String getUSERS_idnumber() {
+        return USERS_idnumber;
     }
 
-    public void setUSERS_iduser(int USERS_iduser) {
-        this.USERS_iduser = USERS_iduser;
+    public void setUSERS_idnumber(String USERS_idnumber) {
+        this.USERS_idnumber = USERS_idnumber;
     }
 
     @Override
     public String toString() {
-        return "Transcript{" + "id_transcript=" + id_transcript + ", subject_code=" + subject_code + ", subject_name=" + subject_name + ", semester=" + semester + ", year=" + year + ", credits=" + credits + ", average=" + average + ", USERS_iduser=" + USERS_iduser + '}';
+        return "Transcript{" + "id_transcript=" + id_transcript + ", subject_code=" + subject_code + ", subject_name=" + subject_name + ", semester=" + semester + ", year=" + year + ", credits=" + credits + ", average=" + average + ", USERS_idnumber=" + USERS_idnumber + '}';
     }
+
+    
     
     
     

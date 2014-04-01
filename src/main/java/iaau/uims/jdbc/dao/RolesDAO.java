@@ -28,11 +28,9 @@ public class RolesDAO {
     
     public Roles getUserRoleByIDnumber(String idNumber) throws SQLException
     {
-        String query = "SELECT USERS.idnumber, ROLES.user_role "
-                        + "FROM ROLES "
-                        + "INNER JOIN USERS "
-                        + "ON ROLES.idnumber=USERS.idnumber "
-                        + "WHERE ROLES.idnumber="+idNumber;
+        String query = "SELECT ROLES.user_role "
+                     + "FROM ROLES "
+                     + "WHERE USERS_idnumber = "+idNumber;
         ResultSet rs = null;
         Roles role = null;
         
@@ -58,9 +56,8 @@ public class RolesDAO {
             if(rs.next())
             {
                 role = new Roles();
-//                role.setUSERS_idusers(rs.getInt("USERS_idusers"));
-                role.setIdnumber(rs.getString("idnumber"));
-                role.setUserRole(rs.getString("user_role"));
+//                role.getUser_role(rs.getString("user_role"));
+                
             }
         }finally{
             ConnectionUtility.close(rs);

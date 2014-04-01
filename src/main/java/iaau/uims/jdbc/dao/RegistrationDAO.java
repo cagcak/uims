@@ -31,14 +31,15 @@ public class RegistrationDAO {
     
     public Registration getRegiatrationByIDnumber(String idNumber) throws SQLException
     {
-        String query = "SELECT USERS.idnumber, REGISTRATION.subject_code, "
-                + "REGISTRATION.subject_name, REGISTRATION.semester, "
-                + "REGISTRATION.`year`, REGISTRATION.hours, REGISTRATION.credits, "
-                + "REGISTRATION.registration_status "
-                + "FROM USERS "
-                + "INNER JOIN REGISTRATION "
-                + "ON USERS.iduser=REGISTRATION.`USERS_iduser` "
-                + "WHERE USERS.idnumber="+idNumber;
+        String query = "SELECT REGISTRATION.subject_code, "
+                            + "REGISTRATION.subject_name, "
+                            + "REGISTRATION.semester, "
+                            + "REGISTRATION.`year`, "
+                            + "REGISTRATION.hours, "
+                            + "REGISTRATION.credits, "
+                            + "REGISTRATION.registration_status "
+                        + "FROM REGISTRATION "
+                        + "WHERE USERS_idnumber = "+idNumber;
         
         ResultSet rs = null;
         Registration reg = null;

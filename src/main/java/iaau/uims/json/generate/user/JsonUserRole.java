@@ -33,11 +33,9 @@ public class JsonUserRole {
     
     public void GenerateUserRoleAsJson(String idNumber) throws SQLException
     {
-        String query = "SELECT USERS.idnumber, ROLES.user_role "
-                + "FROM ROLES "
-                + "INNER JOIN USERS "
-                + "ON ROLES.idnumber=USERS.idnumber "
-                + "WHERE ROLES.idnumber=" + idNumber;
+        String query = "SELECT ROLES.user_role "
+                     + "FROM ROLES "
+                     + "WHERE USERS_idnumber = "+idNumber;
         ResultSet rs = null;
         
         try {
@@ -52,7 +50,6 @@ public class JsonUserRole {
             if (rs.next())
             {
                 JsonArray row = new JsonArray();
-                row.add(new JsonPrimitive(rs.getString("idnumber")));
                 row.add(new JsonPrimitive(rs.getString("user_role")));
                 data.add(row);
             }

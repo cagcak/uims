@@ -67,8 +67,7 @@ public class ConnectionTest {
         System.out.println("\"10\", to test InfoDiploma of a specific User");
         System.out.println("\"11\", to test Registration of a specific User");
         System.out.println("\"-1\", QUIT");
-    }
-    
+    }    
     private static void iterateAction(){
         System.out.println("\nContinue(c) or Exit(-1)");
         Scanner def = new Scanner(System.in);
@@ -79,7 +78,6 @@ public class ConnectionTest {
             System.exit(0);
         }
     }
-    
     private static void actionMenu(){
         int selection;
 
@@ -153,7 +151,6 @@ public class ConnectionTest {
             }
         }
     }
-    
 ////////////////////////////////////////////////////////////////////////////////
 //////////////////////   RETRIEVING TABLE RECORDS    ///////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -182,7 +179,6 @@ public class ConnectionTest {
             e.printStackTrace();
         }
     }
-
     private static void getUserRoleByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");
@@ -204,7 +200,6 @@ public class ConnectionTest {
             e.printStackTrace();
         }
     }
-
     private static void getPermissionOfUserByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");
@@ -226,7 +221,6 @@ public class ConnectionTest {
             e.printStackTrace();
         }
     }
-
     private static void getGeneralInfoByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");
@@ -248,7 +242,6 @@ public class ConnectionTest {
             e.printStackTrace();
         }
     }
-
     private static void getCurrentInfoByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");
@@ -270,7 +263,6 @@ public class ConnectionTest {
             e.printStackTrace();
         }
     }
-
     private static void getAccountingStatusByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");
@@ -291,7 +283,6 @@ public class ConnectionTest {
             e.printStackTrace();
         }
     }
-
     private static void getSuccessReportByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");
@@ -312,7 +303,6 @@ public class ConnectionTest {
             e.printStackTrace();
         }
     }
-
     private static void getTranscriptByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");
@@ -333,7 +323,6 @@ public class ConnectionTest {
             e.printStackTrace();
         }
     }
-
     private static void getAppsFormsByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");
@@ -354,7 +343,6 @@ public class ConnectionTest {
             e.printStackTrace();
         }
     }
-
     private static void getInfoDiplomaByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");
@@ -375,7 +363,6 @@ public class ConnectionTest {
             e.printStackTrace();
         }
     }
-
     private static void getRegistrationByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");
@@ -400,25 +387,19 @@ public class ConnectionTest {
 //////////////////////    DISPLAY TABLE RECORDS      ///////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
     private static void displayUser(Users user) {
-        System.out.println("iduser: "+user.getIduser());
+
         System.out.println("idnumber: "+user.getIdnumber());
         System.out.println("password: "+user.getPassword());
         user.toString();
     }
-
     private static void displayUserRole(Roles userrole) {
-//        System.out.println("iduser: " + userrole.getUSERS_idusers());
-        System.out.println("idnumber: " + userrole.getIdnumber());
-        System.out.println("userrole: " + userrole.getUserRole());
+        System.out.println("userrole: " + userrole.getUser_role());
         userrole.toString();
     }
-
     private static void displayUserRolePerm(Perms roleperm) {
-        System.out.println("user role: "+roleperm.getUserRole());
         System.out.println("permission: "+roleperm.getPermission());
         roleperm.toString();
     }
-
     private static void displayGeneralInfo(GeneralInfo geninfo) {
         System.out.println("faculty: "+geninfo.getFaculty());
         System.out.println("department: "+geninfo.getDepartment());
@@ -427,7 +408,6 @@ public class ConnectionTest {
         System.out.println("education: "+geninfo.getEducation());
         System.out.println("registration: "+geninfo.getRegistration());
     }
-
     private static void displayCurrentInfo(CurrentInfo current) {
         System.out.println("fullname: "+current.getFullname());
         System.out.println(""+current.getCurrent_year());
@@ -435,13 +415,11 @@ public class ConnectionTest {
         System.out.println(""+current.getCurrent_month());
         System.out.println(""+current.getCurrent_exam());
     }
-
     private static void displayAccountingStatusInfo(AccountingStatusInfo status) {
         System.out.println("registration: "+status.getRegistration());
         System.out.println("midterm: "+status.getMidterm());
         System.out.println("final: "+status.getFinal1());
     }
-
     private static void displaySuccessReport(SuccessReport report) {
         System.out.println("subject name: "+report.getSubject_name());
         System.out.println("hours: "+report.getHours());
@@ -452,7 +430,6 @@ public class ConnectionTest {
         System.out.println("semester: "+report.getSemester());
         System.out.println("academic year: "+report.getAcademic_year());
     }
-
     private static void displayTranscript(Transcript script) {
         System.out.println("subject code: "+script.getSubject_code());
         System.out.println("subject name: "+script.getSubject_name());
@@ -461,12 +438,10 @@ public class ConnectionTest {
         System.out.println("credits: "+script.getCredits());
         System.out.println("average: "+script.getAverage());
     }
-
     private static void displayAppsForms(ApplicationsForms appsforms) {
         System.out.println("reference type"+appsforms.getReference_type());
         System.out.println("language"+appsforms.getLanguage());
     }
-
     private static void displayDiplomaInfo(InformationDiploma info_diplom) {
         System.out.println("firstname: "+info_diplom.getFirstname());
         System.out.println("lastname: "+info_diplom.getLastname());
@@ -481,7 +456,6 @@ public class ConnectionTest {
         System.out.println("thesis project name (kg): "+info_diplom.getThesis_project_kg());
         System.out.println("Year of school graduate: "+info_diplom.getYear_of_school_graduation());
     }
-
     private static void displayRegistration(Registration regs) {
         System.out.println("subject code: "+regs.getSubject_code());
         System.out.println("subject name: "+regs.getSubject_name());
@@ -491,5 +465,4 @@ public class ConnectionTest {
         System.out.println("credits: "+regs.getCredits());
         System.out.println("registration status: "+regs.getRegistration_status());
     }
-
 }

@@ -33,7 +33,10 @@ public class JsonUser {
 
     public void GenerateUserAsJson(String idNumber) throws SQLException {
 
-        String query = "SELECT * FROM USERS WHERE idnumber = " + idNumber;
+        String query = "SELECT USERS.idnumber, "
+                + "USERS.password "
+                + "FROM USERS"
+                + "WHERE USERS.idnumber = " + idNumber;
         ResultSet rs = null;
 
         try {

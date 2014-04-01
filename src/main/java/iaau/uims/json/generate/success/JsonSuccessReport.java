@@ -33,15 +33,16 @@ public class JsonSuccessReport {
 
     public void GenerateSuccessReportAsJson(String idNumber) throws SQLException
     {
-        String query = "SELECT USERS.idnumber, SUCCESS_REPORT.subject_name, "
-                + "SUCCESS_REPORT.hours, SUCCESS_REPORT.midterm, "
-                + "SUCCESS_REPORT.`final`, SUCCESS_REPORT.average, "
-                + "SUCCESS_REPORT.attandance, SUCCESS_REPORT.semester, "
+        String query = "SELECT SUCCESS_REPORT.subject_name, "
+                + "SUCCESS_REPORT.hours, "
+                + "SUCCESS_REPORT.midterm, "
+                + "SUCCESS_REPORT.`final`, "
+                + "SUCCESS_REPORT.average, "
+                + "SUCCESS_REPORT.attandance, "
+                + "SUCCESS_REPORT.semester, "
                 + "SUCCESS_REPORT.academic_year "
-                + "FROM USERS "
-                + "INNER JOIN SUCCESS_REPORT "
-                + "ON USERS.iduser=SUCCESS_REPORT.`USERS_iduser` "
-                + "WHERE USERS.idnumber=" + idNumber;
+                + "FROM SUCCESS_REPORT "
+                + "WHERE USERS_idnumber = " + idNumber;
 
         ResultSet rs = null;
         

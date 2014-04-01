@@ -33,16 +33,13 @@ public class JsonCurrentInfo {
 
     public void GenerateCurrentInfoAsJson(String idNumber) throws SQLException
     {
-        String query = "SELECT " + "USERS.idnumber, "
-                + "CURRENT_INFO.fullname, "
+        String query = "SELECT CURRENT_INFO.fullname, "
                 + "CURRENT_INFO.current_year, "
                 + "CURRENT_INFO.current_semester, "
                 + "CURRENT_INFO.current_month, "
                 + "CURRENT_INFO.current_exam "
-                + "FROM USERS "
-                + "INNER JOIN CURRENT_INFO "
-                + "ON USERS.iduser=CURRENT_INFO.`USERS_iduser` "
-                + "WHERE USERS.idnumber=" + idNumber;
+                + "FROM CURRENT_INFO "
+                + "WHERE USERS_idnumber = " + idNumber;
 
         ResultSet rs = null;
         

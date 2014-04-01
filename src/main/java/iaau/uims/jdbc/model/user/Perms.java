@@ -11,25 +11,9 @@ package iaau.uims.jdbc.model.user;
  */
 public class Perms {
     
-    private int idPERMS;
-    private String userRole;
+    
     private String permission;
-
-    public int getIdPERMS() {
-        return idPERMS;
-    }
-
-    public void setIdPERMS(int idPERMS) {
-        this.idPERMS = idPERMS;
-    }
-
-    public String getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
-    }
+    private String ROLES_USERS_idnumber;
 
     public String getPermission() {
         return permission;
@@ -39,10 +23,20 @@ public class Perms {
         this.permission = permission;
     }
 
+    public String getROLES_USERS_idnumber() {
+        return ROLES_USERS_idnumber;
+    }
+
+    public void setROLES_USERS_idnumber(String ROLES_USERS_idnumber) {
+        this.ROLES_USERS_idnumber = ROLES_USERS_idnumber;
+    }
+
     @Override
     public String toString() {
-        return "Perms{" + "idPERMS=" + idPERMS + ", userRole=" + userRole + ", permission=" + permission + '}';
+        return "Perms{" + "permission=" + permission + ", ROLES_USERS_idnumber=" + ROLES_USERS_idnumber + '}';
     }
+
+    
     
     
 }

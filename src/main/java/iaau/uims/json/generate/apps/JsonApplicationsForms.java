@@ -33,12 +33,10 @@ public class JsonApplicationsForms {
 
     public void GenerateAppsFormsAsJson(String idNumber) throws SQLException
     {
-        String query = "SELECT USERS.idnumber, APPLICATIONS_FORMS.reference_type, "
-                + "APPLICATIONS_FORMS.`language` "
-                + "FROM USERS "
-                + "INNER JOIN APPLICATIONS_FORMS "
-                + "ON USERS.iduser=APPLICATIONS_FORMS.`USERS_iduser` "
-                + "WHERE USERS.idnumber=" + idNumber;
+        String query = "SELECT APPLICATIONS_FORMS.reference_type, "
+                + "APPLICATIONS_FORMS.language "
+                + "FROM APPLICATIONS_FORMS "
+                + "WHERE USERS_idnumber = " + idNumber;
 
         ResultSet rs = null;
         

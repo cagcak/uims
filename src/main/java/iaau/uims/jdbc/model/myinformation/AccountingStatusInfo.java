@@ -11,19 +11,11 @@ package iaau.uims.jdbc.model.myinformation;
  */
 public class AccountingStatusInfo {
     
-    private int id_accounting;
+    
     private String registration;
     private String midterm;
     private String final1;
-    private int USERS_iduser;
-
-    public int getId_accounting() {
-        return id_accounting;
-    }
-
-    public void setId_accounting(int id_accounting) {
-        this.id_accounting = id_accounting;
-    }
+    private String USERS_idnumber;
 
     public String getRegistration() {
         return registration;
@@ -49,18 +41,17 @@ public class AccountingStatusInfo {
         this.final1 = final1;
     }
 
-    public int getUSERS_iduser() {
-        return USERS_iduser;
+    public String getUSERS_idnumber() {
+        return USERS_idnumber;
     }
 
-    public void setUSERS_iduser(int USERS_iduser) {
-        this.USERS_iduser = USERS_iduser;
+    public void setUSERS_idnumber(String USERS_idnumber) {
+        this.USERS_idnumber = USERS_idnumber;
     }
 
     @Override
     public String toString() {
-        return "AccountingStatusInfo{" + "id_accounting=" + id_accounting + ", registration=" + registration + ", midterm=" + midterm + ", final1=" + final1 + ", USERS_iduser=" + USERS_iduser + '}';
+        return "AccountingStatusInfo{" + "registration=" + registration + ", midterm=" + midterm + ", final1=" + final1 + ", USERS_idnumber=" + USERS_idnumber + '}';
     }
-    
     
 }

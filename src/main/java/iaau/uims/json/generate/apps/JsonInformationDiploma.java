@@ -33,17 +33,20 @@ public class JsonInformationDiploma {
 
     public void GenerateDiplomaInfoAsJson(String idNumber) throws SQLException
     {
-        String query = "SELECT USERS.idnumber, INFORMATION_DIPLOMA.firstname, "
-                + "INFORMATION_DIPLOMA.lastname, INFORMATION_DIPLOMA.middlename, "
-                + "INFORMATION_DIPLOMA.fullname_ru, INFORMATION_DIPLOMA.current_address, "
-                + "INFORMATION_DIPLOMA.passport_no, INFORMATION_DIPLOMA.birthday, "
-                + "INFORMATION_DIPLOMA.phone_number, INFORMATION_DIPLOMA.thesis_project_en, "
-                + "INFORMATION_DIPLOMA.thesis_project_ru, INFORMATION_DIPLOMA.thesis_project_kg, "
+        String query = "SELECT INFORMATION_DIPLOMA.firstname, "
+                + "INFORMATION_DIPLOMA.lastname, "
+                + "INFORMATION_DIPLOMA.middlename, "
+                + "INFORMATION_DIPLOMA.fullname_ru, "
+                + "INFORMATION_DIPLOMA.current_address, "
+                + "INFORMATION_DIPLOMA.passport_no, "
+                + "INFORMATION_DIPLOMA.birthday, "
+                + "INFORMATION_DIPLOMA.phone_number, "
+                + "INFORMATION_DIPLOMA.thesis_project_en, "
+                + "INFORMATION_DIPLOMA.thesis_project_ru, "
+                + "INFORMATION_DIPLOMA.thesis_project_kg, "
                 + "INFORMATION_DIPLOMA.year_of_school_graduation "
-                + "FROM USERS "
-                + "INNER JOIN INFORMATION_DIPLOMA "
-                + "ON USERS.iduser=INFORMATION_DIPLOMA.`USERS_iduser` "
-                + "WHERE USERS.idnumber=" + idNumber;
+                + "FROM INFORMATION_DIPLOMA "
+                + "WHERE USERS_idnumber = " + idNumber;
 
         ResultSet rs = null;
         

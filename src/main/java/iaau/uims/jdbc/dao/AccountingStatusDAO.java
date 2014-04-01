@@ -31,13 +31,11 @@ public class AccountingStatusDAO {
     
     public AccountingStatusInfo getAccountingSatatusInfoByIDnumber(String idNumber) throws SQLException
     {
-        String query = "SELECT USERS.idnumber, "
-                + "ACCOUNTING_STATUS_INFO.registration, "
-                + "ACCOUNTING_STATUS_INFO.midterm, ACCOUNTING_STATUS_INFO.`final` "
-                + "FROM USERS "
-                + "INNER JOIN ACCOUNTING_STATUS_INFO "
-                + "ON USERS.iduser=ACCOUNTING_STATUS_INFO.`USERS_iduser` "
-                + "WHERE USERS.idnumber="+idNumber;
+        String query = "SELECT ACCOUNTING_STATUS_INFO.registration, "
+                            + "ACCOUNTING_STATUS_INFO.midterm, "
+                            + "ACCOUNTING_STATUS_INFO.`final` "
+                            + "FROM ACCOUNTING_STATUS_INFO "
+                            + "WHERE USERS_idnumber = " + idNumber;
         
         ResultSet rs = null;
         AccountingStatusInfo a_status = null;

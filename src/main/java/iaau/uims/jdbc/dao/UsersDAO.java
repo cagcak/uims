@@ -10,10 +10,10 @@ package iaau.uims.jdbc.dao;
 
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
-import iaau.uims.jdbc.model.user.Roles;
+
 import iaau.uims.jdbc.model.user.Users;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+//import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -43,10 +43,13 @@ public class UsersDAO {
     
     /*This method reads data from database ResultSet and 
       stores it in "user" object and returns this object to the caller.*/
-    public Users getUserByTableID(int idUser) throws SQLException
+    public Users getUserByTableID(int idNumber) throws SQLException
     {
 //        String query = RETRIEVE_USER_QUERY_BY_TABLEID;
-        String query = "SELECT * FROM USERS WHERE iduser = "+idUser;
+        String query = "SELECT USERS.idnumber, "
+                            + "USERS.password "
+                       + "FROM USERS"
+                       + "WHERE USERS.idnumber = "+idNumber;
         ResultSet rs = null;
         Users user = null;
         
@@ -62,7 +65,7 @@ public class UsersDAO {
             if( rs.next() )
             {
                 user = new Users();
-                user.setIduser(rs.getInt("iduser"));
+
                 user.setIdnumber(rs.getString("idnumber"));
                 user.setPassword(rs.getString("password"));
             }
@@ -93,7 +96,7 @@ public class UsersDAO {
 
             if (rs.next()) {
                 user = new Users();
-                user.setIduser(rs.getInt("iduser"));
+
                 user.setIdnumber(rs.getString("idnumber"));
                 user.setPassword(rs.getString("password"));
             }

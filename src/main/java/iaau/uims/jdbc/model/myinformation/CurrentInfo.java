@@ -11,21 +11,13 @@ package iaau.uims.jdbc.model.myinformation;
  */
 public class CurrentInfo {
     
-    private int id_current;
+    
     private String fullname;
     private String current_year;
     private String current_semester;
     private String current_month;
     private String current_exam;
-    private int USERS_iduser;
-
-    public int getId_current() {
-        return id_current;
-    }
-
-    public void setId_current(int id_current) {
-        this.id_current = id_current;
-    }
+    private String USERS_idnumber;
 
     public String getFullname() {
         return fullname;
@@ -67,18 +59,20 @@ public class CurrentInfo {
         this.current_exam = current_exam;
     }
 
-    public int getUSERS_iduser() {
-        return USERS_iduser;
+    public String getUSERS_idnumber() {
+        return USERS_idnumber;
     }
 
-    public void setUSERS_iduser(int USERS_iduser) {
-        this.USERS_iduser = USERS_iduser;
+    public void setUSERS_idnumber(String USERS_idnumber) {
+        this.USERS_idnumber = USERS_idnumber;
     }
 
     @Override
     public String toString() {
-        return "CurrentInfo{" + "id_current=" + id_current + ", fullname=" + fullname + ", current_year=" + current_year + ", current_semester=" + current_semester + ", current_month=" + current_month + ", current_exam=" + current_exam + ", USERS_iduser=" + USERS_iduser + '}';
+        return "CurrentInfo{" + "fullname=" + fullname + ", current_year=" + current_year + ", current_semester=" + current_semester + ", current_month=" + current_month + ", current_exam=" + current_exam + ", USERS_idnumber=" + USERS_idnumber + '}';
     }
+
+    
     
     
     

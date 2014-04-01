@@ -11,7 +11,7 @@ package iaau.uims.jdbc.model.apps;
  */
 public class InformationDiploma {
     
-    private int idinformation_diploma;
+    
     private String firstname;
     private String lastname;
     private String middlename;
@@ -24,15 +24,7 @@ public class InformationDiploma {
     private String thesis_project_ru;
     private String thesis_project_kg;
     private String year_of_school_graduation;
-    private int USERS_iduser;
-
-    public int getIdinformation_diploma() {
-        return idinformation_diploma;
-    }
-
-    public void setIdinformation_diploma(int idinformation_diploma) {
-        this.idinformation_diploma = idinformation_diploma;
-    }
+    private String USERS_idnumber;
 
     public String getFirstname() {
         return firstname;
@@ -130,19 +122,19 @@ public class InformationDiploma {
         this.year_of_school_graduation = year_of_school_graduation;
     }
 
-    public int getUSERS_iduser() {
-        return USERS_iduser;
+    public String getUSERS_idnumber() {
+        return USERS_idnumber;
     }
 
-    public void setUSERS_iduser(int USERS_iduser) {
-        this.USERS_iduser = USERS_iduser;
+    public void setUSERS_idnumber(String USERS_idnumber) {
+        this.USERS_idnumber = USERS_idnumber;
     }
 
     @Override
     public String toString() {
-        return "InfromationDiploma{" + "idinformation_diploma=" + idinformation_diploma + ", firstname=" + firstname + ", lastname=" + lastname + ", middlename=" + middlename + ", fullname_ru=" + fullname_ru + ", current_address=" + current_address + ", passport_no=" + passport_no + ", birthday=" + birthday + ", phone_number=" + phone_number + ", thesis_project_en=" + thesis_project_en + ", thesis_project_ru=" + thesis_project_ru + ", thesis_project_kg=" + thesis_project_kg + ", yea_of_school_graduation=" + year_of_school_graduation + ", USERS_iduser=" + USERS_iduser + '}';
+        return "InformationDiploma{" + "firstname=" + firstname + ", lastname=" + lastname + ", middlename=" + middlename + ", fullname_ru=" + fullname_ru + ", current_address=" + current_address + ", passport_no=" + passport_no + ", birthday=" + birthday + ", phone_number=" + phone_number + ", thesis_project_en=" + thesis_project_en + ", thesis_project_ru=" + thesis_project_ru + ", thesis_project_kg=" + thesis_project_kg + ", year_of_school_graduation=" + year_of_school_graduation + ", USERS_idnumber=" + USERS_idnumber + '}';
     }
-    
+
     
     
 }

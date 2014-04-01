@@ -33,11 +33,9 @@ public class JsonUserRolePermission {
 
     public void GenerateUserRolePermAsJson(String idNumber) throws SQLException
     {
-        String query = "SELECT ROLES.idnumber, ROLES.user_role, PERMS.permission "
-                + "FROM PERMS "
-                + "INNER JOIN ROLES "
-                + "ON ROLES.`PERMS_idPERMS`=PERMS.`idPERMS` "
-                + "WHERE ROLES.idnumber=" + idNumber;
+        String query = "SELECT PERMS.`permission` "
+                     + "FROM PERMS "
+                     + "WHERE ROLES_USERS_idnumber = " + idNumber;
 
         ResultSet rs = null;
         
@@ -53,7 +51,6 @@ public class JsonUserRolePermission {
             if (rs.next())
             {
                 JsonArray row = new JsonArray();
-                row.add(new JsonPrimitive(rs.getString("user_role")));
                 row.add(new JsonPrimitive(rs.getString("permission")));
                 data.add(row);
             }

@@ -23,7 +23,7 @@ public class ConnectionFactory {
     //static reference to itself
     private static ConnectionFactory instance = new ConnectionFactory();
     
-    public static final String URL = "jdbc:mysql://localhost:1990/uims_db?zeroDateTimeBehavior=convertToNull";
+    public static final String URL = "jdbc:mysql://localhost:1990/dbuims?zeroDateTimeBehavior=convertToNull";
     public static final String USER = "root";
     public static final String PASSWORD = "00011011";
     public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";

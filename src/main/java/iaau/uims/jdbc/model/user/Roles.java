@@ -11,56 +11,33 @@ package iaau.uims.jdbc.model.user;
  */
 public class Roles {
 
-    private int idRoles;
-    private String idnumber;
-    private String userRole;
-    private int PERMS_idPERMS;
-    private int USERS_idusers;
+    
+    
+    private String user_role;
+    private String USERS_idnumber;
 
-    public int getIdRoles() {
-        return idRoles;
+    
+    public String getUser_role() {
+        return user_role;
     }
 
-    public void setIdRoles(int idRoles) {
-        this.idRoles = idRoles;
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
     }
 
-    public String getIdnumber() {
-        return idnumber;
+    public String getUSERS_idnumber() {
+        return USERS_idnumber;
     }
 
-    public void setIdnumber(String idnumber) {
-        this.idnumber = idnumber;
-    }
-
-    public String getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
-    }
-
-    public int getPERMS_idPERMS() {
-        return PERMS_idPERMS;
-    }
-
-    public void setPERMS_idPERMS(int PERMS_idPERMS) {
-        this.PERMS_idPERMS = PERMS_idPERMS;
-    }
-
-    public int getUSERS_idusers() {
-        return USERS_idusers;
-    }
-
-    public void setUSERS_idusers(int USERS_idusers) {
-        this.USERS_idusers = USERS_idusers;
+    public void setUSERS_idnumber(String USERS_idnumber) {
+        this.USERS_idnumber = USERS_idnumber;
     }
 
     @Override
     public String toString() {
-        return "Roles{" + "idRoles=" + idRoles + ", idnumber=" + idnumber + ", userRole=" + userRole + ", PERMS_idPERMS=" + PERMS_idPERMS + ", USERS_idusers=" + USERS_idusers + '}';
+        return "Roles{" + "user_role=" + user_role + ", USERS_idnumber=" + USERS_idnumber + '}';
     }
-    
+
+
     
 }

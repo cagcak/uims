@@ -19,6 +19,15 @@ public class SuccessReport {
     private String average;
     private String attandance;
     private String semester;
+    private String USERS_idnumber;
+
+    public String getUSERS_idnumber() {
+        return USERS_idnumber;
+    }
+
+    public void setUSERS_idnumber(String USERS_idnumber) {
+        this.USERS_idnumber = USERS_idnumber;
+    }
 
     public String getSemester() {
         return semester;
@@ -104,8 +113,9 @@ public class SuccessReport {
 
     @Override
     public String toString() {
-        return "SuccessReport{" + "id_success=" + id_success + ", subject_name=" + subject_name + ", houres=" + hours + ", midterm=" + midterm + ", final1=" + final1 + ", average=" + average + ", attandance=" + attandance + ", academic_year=" + academic_year + ", USERS_iduser=" + USERS_iduser + '}';
+        return "SuccessReport{" + "id_success=" + id_success + ", subject_name=" + subject_name + ", hours=" + hours + ", midterm=" + midterm + ", final1=" + final1 + ", average=" + average + ", attandance=" + attandance + ", semester=" + semester + ", USERS_idnumber=" + USERS_idnumber + ", academic_year=" + academic_year + ", USERS_iduser=" + USERS_iduser + '}';
     }
+
     
     
 }

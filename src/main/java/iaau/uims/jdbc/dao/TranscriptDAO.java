@@ -31,13 +31,15 @@ public class TranscriptDAO {
     
     public Transcript getTranscriptByIDnumber(String idNumber) throws SQLException
     {
-        String query = "SELECT USERS.idnumber, TRASCRIPT.subject_code, "
-                + "TRASCRIPT.subject_name, TRASCRIPT.semester, TRASCRIPT.`year`, "
-                + "TRASCRIPT.credits, TRASCRIPT.average "
-                + "FROM USERS "
-                + "INNER JOIN TRASCRIPT "
-                + "ON USERS.iduser=TRASCRIPT.`USERS_iduser` "
-                + "WHERE USERS.idnumber="+idNumber;
+        String query = "SELECT TRASCRIPT.subject_code, "
+                            + "TRASCRIPT.subject_name, "
+                            + "TRASCRIPT.semester, "
+                            + "TRASCRIPT.`year`, "
+                            + "TRASCRIPT.credits, "
+                            + "TRASCRIPT.credits, "
+                            + "TRASCRIPT.average "
+                    + "FROM TRASCRIPT "
+                    + "WHERE USERS_idnumber = "+idNumber;
         
         ResultSet rs = null;
         Transcript transcript = null;

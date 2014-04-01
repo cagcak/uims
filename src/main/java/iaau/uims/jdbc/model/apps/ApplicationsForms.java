@@ -11,18 +11,10 @@ package iaau.uims.jdbc.model.apps;
  */
 public class ApplicationsForms {
     
-    private int idapplications_forms;
+    
     private String reference_type;
     private String language;
-    private int USERS_iduser;
-
-    public int getIdapplications_forms() {
-        return idapplications_forms;
-    }
-
-    public void setIdapplications_forms(int idapplications_forms) {
-        this.idapplications_forms = idapplications_forms;
-    }
+    private String USERS_idnumber;
 
     public String getReference_type() {
         return reference_type;
@@ -40,18 +32,20 @@ public class ApplicationsForms {
         this.language = language;
     }
 
-    public int getUSERS_iduser() {
-        return USERS_iduser;
+    public String getUSERS_idnumber() {
+        return USERS_idnumber;
     }
 
-    public void setUSERS_iduser(int USERS_iduser) {
-        this.USERS_iduser = USERS_iduser;
+    public void setUSERS_idnumber(String USERS_idnumber) {
+        this.USERS_idnumber = USERS_idnumber;
     }
 
     @Override
     public String toString() {
-        return "ApplicationsForms{" + "idapplications_forms=" + idapplications_forms + ", reference_type=" + reference_type + ", language=" + language + ", USERS_iduser=" + USERS_iduser + '}';
+        return "ApplicationsForms{" + "reference_type=" + reference_type + ", language=" + language + ", USERS_idnumber=" + USERS_idnumber + '}';
     }
+
+    
     
     
 }

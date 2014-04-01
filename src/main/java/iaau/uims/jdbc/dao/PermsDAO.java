@@ -10,7 +10,7 @@ package iaau.uims.jdbc.dao;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
 import iaau.uims.jdbc.model.user.Perms;
-import iaau.uims.jdbc.model.user.Users;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,11 +26,9 @@ public class PermsDAO {
     
     public Perms getUserPermissionByIDnumber(String idNumber) throws SQLException
     {
-        String query = "SELECT ROLES.idnumber, ROLES.user_role, PERMS.permission "
-                        + "FROM PERMS "
-                        + "INNER JOIN ROLES "
-                        + "ON ROLES.`PERMS_idPERMS`=PERMS.`idPERMS` "
-                        + "WHERE ROLES.idnumber=" + idNumber;
+        String query = "SELECT PERMS.`permission` "
+                     + "FROM PERMS "
+                     + "WHERE ROLES_USERS_idnumber = " + idNumber;
         
         ResultSet rs = null;
         Perms permission = null;
@@ -44,8 +42,6 @@ public class PermsDAO {
             if (rs.next())
             {
                 permission = new Perms();
-
-                permission.setUserRole(rs.getString("user_role"));
                 permission.setPermission(rs.getString("permission"));
             }
         }finally{

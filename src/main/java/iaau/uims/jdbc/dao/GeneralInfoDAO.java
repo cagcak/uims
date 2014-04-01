@@ -10,7 +10,7 @@ package iaau.uims.jdbc.dao;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
 import iaau.uims.jdbc.model.myinformation.GeneralInfo;
-import iaau.uims.jdbc.model.user.Roles;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,11 +29,14 @@ public class GeneralInfoDAO {
     
     public GeneralInfo getGeneralInformationByIDnumber(String idNumber) throws SQLException
     {
-        String query = "SELECT USERS.idnumber, GENERAL_INFO.faculty, GENERAL_INFO.department, GENERAL_INFO.group_name, GENERAL_INFO.supervisor, GENERAL_INFO.education, GENERAL_INFO.registration "
-                        + "FROM USERS "
-                        + "INNER JOIN GENERAL_INFO "
-                        + "ON USERS.iduser=GENERAL_INFO.`USERS_iduser` "
-                        + "WHERE USERS.idnumber="+idNumber;
+        String query = "SELECT GENERAL_INFO.faculty, "
+                            + "GENERAL_INFO.department, "
+                            + "GENERAL_INFO.group_name, "
+                            + "GENERAL_INFO.supervisor, "
+                            + "GENERAL_INFO.education, "
+                            + "GENERAL_INFO.registration "
+                    + "FROM GENERAL_INFO "
+                    + "WHERE USERS_idnumber = "+idNumber;
         ResultSet rs = null;
         GeneralInfo generalInfo = null;
         

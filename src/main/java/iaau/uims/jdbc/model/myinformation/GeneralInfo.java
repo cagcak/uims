@@ -11,22 +11,14 @@ package iaau.uims.jdbc.model.myinformation;
  */
 public class GeneralInfo {
     
-    private int id_general_info;
+    
     private String faculty;
     private String department;
     private String group_name;
     private String supervisor;
     private String education;
     private String registration;
-    private int USERS_iduser;
-
-    public int getId_general_info() {
-        return id_general_info;
-    }
-
-    public void setId_general_info(int id_general_info) {
-        this.id_general_info = id_general_info;
-    }
+    private String USERS_idnumber;
 
     public String getFaculty() {
         return faculty;
@@ -67,7 +59,6 @@ public class GeneralInfo {
     public void setEducation(String education) {
         this.education = education;
     }
-    
 
     public String getRegistration() {
         return registration;
@@ -77,18 +68,19 @@ public class GeneralInfo {
         this.registration = registration;
     }
 
-    public int getUSERS_iduser() {
-        return USERS_iduser;
+    public String getUSERS_idnumber() {
+        return USERS_idnumber;
     }
 
-    public void setUSERS_iduser(int USERS_iduser) {
-        this.USERS_iduser = USERS_iduser;
+    public void setUSERS_idnumber(String USERS_idnumber) {
+        this.USERS_idnumber = USERS_idnumber;
     }
 
     @Override
     public String toString() {
-        return "GeneralInfo{" + "id_general_info=" + id_general_info + ", faculty=" + faculty + ", department=" + department + ", group_name=" + group_name + ", supervisor=" + supervisor + ", registration=" + registration + ", USERS_iduser=" + USERS_iduser + '}';
+        return "GeneralInfo{" + "faculty=" + faculty + ", department=" + department + ", group_name=" + group_name + ", supervisor=" + supervisor + ", education=" + education + ", registration=" + registration + ", USERS_idnumber=" + USERS_idnumber + '}';
     }
+
     
     
 }
