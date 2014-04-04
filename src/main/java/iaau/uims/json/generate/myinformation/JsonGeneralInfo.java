@@ -15,10 +15,15 @@ import com.google.gson.JsonPrimitive;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
 import iaau.uims.jdbc.model.myinformation.GeneralInfo;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,6 +39,18 @@ public class JsonGeneralInfo {
 
     public GeneralInfo GenerateGeneralInfoAsJson(String idNumber) throws SQLException
     {
+        File folder = new File("src\\main\\json\\" , idNumber);
+        folder.mkdir();
+        
+        if ( !folder.exists() )
+        {
+            try {
+                folder.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(JsonGeneralInfo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
         String query = "SELECT GENERAL_INFO.faculty, "
                             + "GENERAL_INFO.department, "
                             + "GENERAL_INFO.group_name, "
@@ -69,9 +86,45 @@ public class JsonGeneralInfo {
             
             jsonResponse.add("jsonGeneralInfo", data);
             System.out.println("JSONArray form: " + data);
-//
-//            String a = data.toString();
-//            System.out.println("String form: " + a);
+         
+            FileOutputStream output = null;
+            
+            
+            
+            
+            File file;
+            String content = data.toString();
+            
+            try {
+                
+                String folder_location = folder.toString() + "\\";
+                String filename = "GeneralInfo";
+                file = new File(folder_location + filename.toString() + ".json");
+                output = new FileOutputStream(file);
+                
+                if ( !file.exists() ) 
+                {
+                    file.createNewFile();
+                }
+                
+                byte[] content_in_bytes = content.getBytes();
+                
+                output.write(content_in_bytes);
+                output.flush();
+                output.close();
+                
+            } catch (IOException ex) {
+                Logger.getLogger(JsonGeneralInfo.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if (output != null) {
+                        output.close();
+                    }
+                } catch(IOException e) {
+                    Logger.getLogger(JsonGeneralInfo.class.getName()).log(Level.SEVERE, null, e);
+                }
+            }
+            
         } finally {
             ConnectionUtility.close(rs);
             ConnectionUtility.close(statement);

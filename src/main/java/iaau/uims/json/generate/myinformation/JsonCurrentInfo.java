@@ -14,10 +14,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,6 +38,18 @@ public class JsonCurrentInfo {
 
     public void GenerateCurrentInfoAsJson(String idNumber) throws SQLException
     {
+        
+        File folder = new File("src\\main\\json\\", idNumber);
+        folder.mkdir();
+
+        if (!folder.exists()) {
+            try {
+                folder.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(JsonGeneralInfo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
         String query = "SELECT CURRENT_INFO.fullname, "
                 + "CURRENT_INFO.current_year, "
                 + "CURRENT_INFO.current_semester, "
@@ -65,9 +82,39 @@ public class JsonCurrentInfo {
             
             jsonResponse.add("jsonCurrentInfo", data);
             System.out.println("JSONArray form: " + data);
+            
+            FileOutputStream output = null;
+            File file;
+            String content = data.toString();
 
-            String a = data.toString();
-            System.out.println("String form: " + a);
+            try {
+
+                String folder_location = folder.toString() + "\\";
+                String filename = "CurrentInfo";
+                file = new File(folder_location + filename.toString() + ".json");
+                output = new FileOutputStream(file);
+
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+
+                byte[] content_in_bytes = content.getBytes();
+
+                output.write(content_in_bytes);
+                output.flush();
+                output.close();
+
+            } catch (IOException ex) {
+                Logger.getLogger(JsonGeneralInfo.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if (output != null) {
+                        output.close();
+                    }
+                } catch (IOException e) {
+                    Logger.getLogger(JsonGeneralInfo.class.getName()).log(Level.SEVERE, null, e);
+                }
+            }
             
         } finally {
             ConnectionUtility.close(rs);

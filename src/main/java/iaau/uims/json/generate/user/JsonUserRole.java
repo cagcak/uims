@@ -56,10 +56,11 @@ public class JsonUserRole {
             
             jsonResponse.add("jsonUserRole", data);
             System.out.println("JSONArray form: " + data);
-//          Generated JSON String of Output must be like
-//          [["08010101865","user"]] as [["idnumber","user_role"]]
-            String a = data.toString();
-            System.out.println("String form: " + a);
+//            Generated JSON String of Output must be like
+//            [["08010101865","user"]] as [["idnumber","user_role"]]
+//            String a = data.toString();
+//            System.out.println("String form: " + a);
+            
     }finally {
             ConnectionUtility.close(rs);
             ConnectionUtility.close(statement);
