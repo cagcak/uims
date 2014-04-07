@@ -7,11 +7,13 @@
  *   add -----> commit -----> remote>push    * 
  */
 
-package iaau.uims.jdbc.dao;
+package iaau.uims.json.generate;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
-import iaau.uims.jdbc.model.ApplicationsForms;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,23 +23,21 @@ import java.sql.Statement;
  *
  * @author Çağrı Çakır
  */
-public class ApplicationsFormsDAO {
+public class JsonUserRolePermission {
+
+    public JsonUserRolePermission() {
+    }
     
     private Connection connection;
     private Statement statement;
 
-    public ApplicationsFormsDAO() {
-    }
-    
-    public ApplicationsForms getAppsFormsByIDnumber(String idNumber) throws SQLException
+    public void GenerateUserRolePermAsJson(String idNumber) throws SQLException
     {
-        String query = "SELECT APPLICATIONS_FORMS.reference_type, "
-                            + "APPLICATIONS_FORMS.language "
-                            + "FROM APPLICATIONS_FORMS "
-                            + "WHERE USERS_idnumber = "+idNumber;
-        
+        String query = "SELECT PERMS.`permission` "
+                     + "FROM PERMS "
+                     + "WHERE ROLES_USERS_idnumber = " + idNumber;
+
         ResultSet rs = null;
-        ApplicationsForms appsforms = null;
         
         try {
             connection = ConnectionFactory.getConnection();
@@ -45,16 +45,24 @@ public class ApplicationsFormsDAO {
 
             rs = statement.executeQuery(query);
 
-            if (rs.next()) {
-                appsforms = new ApplicationsForms();
-                appsforms.setReference_type(rs.getString("reference_type"));
-                appsforms.setLanguage(rs.getString("language"));
+            JsonObject jsonResponse = new JsonObject();
+            JsonArray data = new JsonArray();
+
+            if (rs.next())
+            {
+                JsonArray row = new JsonArray();
+                row.add(new JsonPrimitive(rs.getString("permission")));
+                data.add(row);
             }
+            
+            jsonResponse.add("jsonUserRolePermission", data);
+            System.out.println("\n\tJsonArray form \n" + data.getAsJsonArray());
+            System.out.println("\n\tJsonObject form \n" + jsonResponse.getAsJsonObject());
         } finally {
             ConnectionUtility.close(rs);
             ConnectionUtility.close(statement);
             ConnectionUtility.close(connection);
         }
-        return appsforms;
     }
+    
 }

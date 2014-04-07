@@ -8,17 +8,6 @@
  */
 package iaau.uims.json.generate;
 
-import iaau.uims.json.generate.user.JsonUser;
-import iaau.uims.json.generate.apps.JsonApplicationsForms;
-import iaau.uims.json.generate.apps.JsonInformationDiploma;
-import iaau.uims.json.generate.apps.JsonRegistration;
-import iaau.uims.json.generate.myinformation.JsonAccountingStatusInfo;
-import iaau.uims.json.generate.myinformation.JsonCurrentInfo;
-import iaau.uims.json.generate.myinformation.JsonGeneralInfo;
-import iaau.uims.json.generate.success.JsonSuccessReport;
-import iaau.uims.json.generate.transcript.JsonTranscript;
-import iaau.uims.json.generate.user.JsonUserRole;
-import iaau.uims.json.generate.user.JsonUserRolePermission;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -46,7 +35,7 @@ public class JSONTest
         selection = input.nextInt();
         switch (selection) {
             case 1: {
-                getUserById();
+                getUserByIDnumber();
                 iterateAction();
                 break;
             }
@@ -111,7 +100,7 @@ public class JSONTest
     }
     private static void showMenu() {
         System.out.println("||||||||||||| Generate JSON |||||||||||||||| ");
-        System.out.println("|1|  User Login ");
+        System.out.println("|1| User Login ");
         System.out.println("|2| User role");
         System.out.println("|3| User Role permission");
         System.out.println("|4| General Information");
@@ -138,7 +127,7 @@ public class JSONTest
 ////////////////////////////////////////////////////////////////////////////////
     
 /////////////////////////////  DISPLAYING JSON   ///////////////////////////////
-    private static void getUserById() throws SQLException {
+    private static void getUserByIDnumber() throws SQLException {
         JsonUser user = new JsonUser();
         Scanner is = new Scanner(System.in);
         System.out.println("id: ");

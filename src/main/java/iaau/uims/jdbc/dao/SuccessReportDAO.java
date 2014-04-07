@@ -11,7 +11,7 @@ package iaau.uims.jdbc.dao;
 
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
-import iaau.uims.jdbc.model.success.SuccessReport;
+import iaau.uims.jdbc.model.SuccessReport;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

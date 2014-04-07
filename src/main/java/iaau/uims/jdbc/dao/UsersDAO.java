@@ -11,7 +11,7 @@ package iaau.uims.jdbc.dao;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
 
-import iaau.uims.jdbc.model.user.Users;
+import iaau.uims.jdbc.model.Users;
 import java.sql.Connection;
 //import java.sql.PreparedStatement;
 import java.sql.ResultSet;

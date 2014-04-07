@@ -9,7 +9,7 @@ package iaau.uims.jdbc.dao;
 
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
-import iaau.uims.jdbc.model.myinformation.GeneralInfo;
+import iaau.uims.jdbc.model.GeneralInfo;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

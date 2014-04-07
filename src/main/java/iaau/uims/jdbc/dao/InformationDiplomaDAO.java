@@ -11,7 +11,7 @@ package iaau.uims.jdbc.dao;
 
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
-import iaau.uims.jdbc.model.apps.InformationDiploma;
+import iaau.uims.jdbc.model.InformationDiploma;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,7 +69,7 @@ public class InformationDiplomaDAO {
                 infodiplom.setThesis_project_en(rs.getString("thesis_project_en"));
                 infodiplom.setThesis_project_ru(rs.getString("thesis_project_ru"));
                 infodiplom.setThesis_project_kg(rs.getString("thesis_project_kg"));
-                infodiplom.setYear_of_school_graduation(rs.getString("year_of_school_graduation"));
+                infodiplom.setYear_of_school_graduation(rs.getDate("year_of_school_graduation"));
             }
         }finally {
             ConnectionUtility.close(rs);
