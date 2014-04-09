@@ -100,15 +100,15 @@ public class ParseJsonTest {
 
     private static void showMenu() {
         System.out.println("||||||||||||| Parse JSON |||||||||||||||| ");
-        System.out.println("|1| User Login ");
-        System.out.println("|2| User role");
-        System.out.println("|3| User Role permission");
-        System.out.println("|4| General Information");
-        System.out.println("|5| Current Information");
-        System.out.println("|6| Accounting Status Information");
-        System.out.println("|7| Success Report");
-        System.out.println("|8| Transcript");
-        System.out.println("|9| Applications & Forms info");
+        System.out.println("|1|  User Login ");
+        System.out.println("|2|  User role");
+        System.out.println("|3|  User Role permission");
+        System.out.println("|4|  General Information");
+        System.out.println("|5|  Current Information");
+        System.out.println("|6|  Accounting Status Information");
+        System.out.println("|7|  Success Report");
+        System.out.println("|8|  Transcript");
+        System.out.println("|9|  Applications & Forms info");
         System.out.println("|10| Information of Diploma");
         System.out.println("|11| Registration Info");
         System.out.println("|-1| EXIT ");
@@ -126,13 +126,31 @@ public class ParseJsonTest {
         }
     }
 
-    private static void getParsedJsonUser() {
+    private static void getParsedJsonUser() throws IOException {
+        ParseUser user = new ParseUser();
+        Scanner is = new Scanner(System.in);
+        System.out.println("id: ");
+        String a = is.nextLine();
+        user.Parsing(a);
+        user.Printing();
     }
 
-    private static void getParsedJsonUserRole() {
+    private static void getParsedJsonUserRole() throws IOException {
+        ParseUserRole role = new ParseUserRole();
+        Scanner is = new Scanner(System.in);
+        System.out.println("id: ");
+        String a = is.nextLine();
+        role.Parsing(a);
+        role.Printing();
     }
 
-    private static void getParsedJsonUserPermission() {
+    private static void getParsedJsonUserPermission() throws IOException {
+        ParseUserPermission perm = new ParseUserPermission();
+        Scanner is = new Scanner(System.in);
+        System.out.println("id: ");
+        String a = is.nextLine();
+        perm.Parsing(a);
+        perm.Printing();
     }
 
     private static void getParsedJsonGeneralInfo() throws IOException {
@@ -153,22 +171,58 @@ public class ParseJsonTest {
         current_info.Printing();
     }
 
-    private static void getParsedJsonAccountingStatus() {
+    private static void getParsedJsonAccountingStatus() throws IOException {
+        ParseAccountingStatusInfo account = new ParseAccountingStatusInfo();
+        Scanner is = new Scanner(System.in);
+        System.out.println("id: ");
+        String a = is.nextLine();
+        account.Parsing(a);
+        account.Printing();
     }
 
-    private static void getParsedJsonSuccessReport() {
+    private static void getParsedJsonSuccessReport() throws IOException {
+        ParseSuccessReport success = new ParseSuccessReport();
+        Scanner is = new Scanner(System.in);
+        System.out.println("id: ");
+        String a = is.nextLine();
+        success.Parsing(a);
+        success.Printing();
     }
 
-    private static void getParsedJsonTranscript() {
+    private static void getParsedJsonTranscript() throws IOException {
+        ParseTranscript scr = new ParseTranscript();
+        Scanner is = new Scanner(System.in);
+        System.out.println("id: ");
+        String a = is.nextLine();
+        scr.Parsing(a);
+        scr.Printing();
     }
 
-    private static void getParsedJsonAppsForms() {
+    private static void getParsedJsonAppsForms() throws IOException {
+        ParseAppsForms apps = new ParseAppsForms();
+        Scanner is = new Scanner(System.in);
+        System.out.println("id: ");
+        String a = is.nextLine();
+        apps.Parsing(a);
+        apps.Printing();
     }
 
-    private static void getParsedJsonInformationDiploma() {
+    private static void getParsedJsonInformationDiploma() throws IOException {
+        ParseInformationDiploma diplom = new ParseInformationDiploma();
+        Scanner is = new Scanner(System.in);
+        System.out.println("id: ");
+        String a = is.nextLine();
+        diplom.Parsing(a);
+        diplom.Printing();
     }
 
-    private static void getParsedJsonRegistration() {
+    private static void getParsedJsonRegistration() throws IOException {
+        ParseRegistration reg = new ParseRegistration();
+        Scanner is = new Scanner(System.in);
+        System.out.println("id: ");
+        String a = is.nextLine();
+        reg.Parsing(a);
+        reg.Printing();
     }
     
 }

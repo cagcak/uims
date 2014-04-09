@@ -14,10 +14,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,6 +38,17 @@ public class JsonUserRolePermission {
 
     public void GenerateUserRolePermAsJson(String idNumber) throws SQLException
     {
+        File folder = new File("src\\main\\json\\", idNumber);
+        folder.mkdir();
+
+        if (!folder.exists()) {
+            try {
+                folder.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(JsonUserRolePermission.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
         String query = "SELECT PERMS.`permission` "
                      + "FROM PERMS "
                      + "WHERE ROLES_USERS_idnumber = " + idNumber;
@@ -58,6 +74,40 @@ public class JsonUserRolePermission {
             jsonResponse.add("jsonUserRolePermission", data);
             System.out.println("\n\tJsonArray form \n" + data.getAsJsonArray());
             System.out.println("\n\tJsonObject form \n" + jsonResponse.getAsJsonObject());
+            
+            FileOutputStream output = null;
+            File file;
+            String content = data.toString();
+
+            try {
+
+                String folder_location = folder.toString() + "\\";
+                String filename = "UserRolePermission";
+                file = new File(folder_location + filename.toString() + ".json");
+                output = new FileOutputStream(file);
+
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+
+                byte[] content_in_bytes = content.getBytes();
+
+                output.write(content_in_bytes);
+                output.flush();
+                output.close();
+
+            } catch (IOException ex) {
+                Logger.getLogger(JsonUserRolePermission.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if (output != null) {
+                        output.close();
+                    }
+                } catch (IOException e) {
+                    Logger.getLogger(JsonUserRolePermission.class.getName()).log(Level.SEVERE, null, e);
+                }
+            }
+            
         } finally {
             ConnectionUtility.close(rs);
             ConnectionUtility.close(statement);
