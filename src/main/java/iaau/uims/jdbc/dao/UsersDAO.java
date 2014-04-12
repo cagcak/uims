@@ -8,6 +8,7 @@
 
 package iaau.uims.jdbc.dao;
 
+import com.mysql.jdbc.exceptions.MySQLSyntaxErrorException;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
 
@@ -39,45 +40,6 @@ public class UsersDAO {
     
     public UsersDAO() {
     }
-        
-    
-    /*This method reads data from database ResultSet and 
-      stores it in "user" object and returns this object to the caller.*/
-    public Users getUserByTableID(int idNumber) throws SQLException
-    {
-//        String query = RETRIEVE_USER_QUERY_BY_TABLEID;
-        String query = "SELECT USERS.idnumber, "
-                            + "USERS.password "
-                       + "FROM USERS"
-                       + "WHERE USERS.idnumber = "+idNumber;
-        ResultSet rs = null;
-        Users user = null;
-        
-        try{
-            connection = ConnectionFactory.getConnection();
-            statement = connection.createStatement();
-            
-//            statement = connection.prepareStatement(query);
-//            statement.setInt(1, idUser);
-            
-            rs = statement.executeQuery(query);
-            
-            if( rs.next() )
-            {
-                user = new Users();
-
-                user.setIdnumber(rs.getString("idnumber"));
-                user.setPassword(rs.getString("password"));
-            }
-            
-        }finally{
-            ConnectionUtility.close(rs);
-            ConnectionUtility.close(statement);
-            ConnectionUtility.close(connection);
-        }
-        
-        return user;
-    }
     
     public Users getUserByIDnumber(String IDnumber) throws SQLException
     {
@@ -101,6 +63,12 @@ public class UsersDAO {
                 user.setPassword(rs.getString("password"));
             }
 
+        } catch (MySQLSyntaxErrorException s){
+            if (rs.wasNull())
+            {
+                s.getStackTrace();
+                return null;
+            }
         } finally {
             ConnectionUtility.close(rs);
             ConnectionUtility.close(statement);
@@ -110,4 +78,39 @@ public class UsersDAO {
         return user;
     }
     
+    
+    public Users getUser(String IDnumber, String password) throws SQLException {
+//      String query = RETRIEVE_USER_QUERY_BY_IDNUMBER;
+        String query = "SELECT * FROM USERS WHERE idnumber = " + IDnumber + " AND password = " + password;
+        ResultSet rs = null;
+        Users user = null;
+
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.createStatement();
+
+//            statement = connection.prepareStatement(query);
+//            statement.setString(1, IDnumber);
+            rs = statement.executeQuery(query);
+
+            if (rs.next()) {
+                user = new Users();
+
+                user.setIdnumber(rs.getString("idnumber"));
+                user.setPassword(rs.getString("password"));
+            }
+
+        }catch (MySQLSyntaxErrorException s) {
+            if ( rs.wasNull() ) {
+                s.getStackTrace();
+                return null;
+            }
+        } finally {
+            ConnectionUtility.close(rs);
+            ConnectionUtility.close(statement);
+            ConnectionUtility.close(connection);
+        }
+
+        return user;
+    }
 }

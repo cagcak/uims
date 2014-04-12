@@ -88,7 +88,7 @@ public class ConnectionTest {
 /////////////////////////////  TEST MENU ACTION   //////////////////////////////       
         switch (selection) {
             case 1: {
-                getUserById();
+//                getUserById();
                 iterateAction();
                 break;
             }
@@ -154,31 +154,31 @@ public class ConnectionTest {
 ////////////////////////////////////////////////////////////////////////////////
 //////////////////////   RETRIEVING TABLE RECORDS    ///////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-    private static void getUserById() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Enter the ID of record:");
-        
-        try
-        {
-            //String IDnumber = br.toString();
-            int iduser = Integer.parseInt(br.readLine());
-            UsersDAO userDAO  = new UsersDAO();
-            Users user = userDAO.getUserByTableID(iduser);
-            
-            if ( user != null )
-            {
-                displayUser(user);
-            }else{
-                System.out.println("No User with ID number: " + iduser);
-            }
-        }catch (NumberFormatException e) {
-            e.printStackTrace();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    private static void getUserById() {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        System.out.println("Enter the ID of record:");
+//        
+//        try
+//        {
+//            //String IDnumber = br.toString();
+//            int iduser = Integer.parseInt(br.readLine());
+//            UsersDAO userDAO  = new UsersDAO();
+//            Users user = userDAO.getUserByTableID(iduser);
+//            
+//            if ( user != null )
+//            {
+//                displayUser(user);
+//            }else{
+//                System.out.println("No User with ID number: " + iduser);
+//            }
+//        }catch (NumberFormatException e) {
+//            e.printStackTrace();
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
     private static void getUserRoleByIDnumber() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the ID number:");

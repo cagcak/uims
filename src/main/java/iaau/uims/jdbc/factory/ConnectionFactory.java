@@ -30,7 +30,7 @@ public class ConnectionFactory {
     
     //private constructor
     private ConnectionFactory() {
-        System.out.println("in connection factory constructor");
+        System.out.println("\n*****************\nConnecting to database...\n*******************\n");
         try {
             Class.forName(DRIVER_CLASS);
         } catch (ClassNotFoundException e) {
