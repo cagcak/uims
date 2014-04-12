@@ -8,13 +8,25 @@
  */
 
 package iaau.uims.servlet;
-
+/*
+ * This servlet class takes an HTTP get request from the android application by
+ * JSON inside a JSONArray, parses, maps and converts to a string variable to 
+ * check the ID number sent inside the database, if there is a match then sends 
+ * back to the android application as a new session with its true value.
+ * Then the other servlet classes handle with sending informations for a dedicated
+ * user.
+*/
 import com.fasterxml.jackson.databind.ObjectMapper;
-import iaau.uims.jdbc.model.user.Users;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import iaau.uims.jdbc.dao.UsersDAO;
+import iaau.uims.jdbc.model.Users;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,13 +46,14 @@ public class GetAndroidRequest extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
     // This will store all received users at the same session
-    List<Users> users = new LinkedList<Users>();
+    List<Users> users = new ArrayList<Users>();
     
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
-    {
+    {   
+        doPost(request, response);
         //  initiate jackson mapper
         ObjectMapper mapper = new ObjectMapper();
 
@@ -49,10 +62,7 @@ public class GetAndroidRequest extends HttpServlet {
 
         //  Send List<Users> as JSON to client
         mapper.writeValue(response.getOutputStream(), users);
-        String servletInfo = getServletInfo();
-        System.out.println(servletInfo);
     }
-
 
 //  doPost(): receives JSON data, parse it, map it and send back as JSON
     @Override
@@ -62,45 +72,83 @@ public class GetAndroidRequest extends HttpServlet {
         // receiving JSON data from request
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String user_credentials = "";
-        if (br != null) 
-        {
-            user_credentials = br.readLine();
-        }
-        
-        // initiating jackson mapper
+
+        user_credentials = br.readLine();
+
         ObjectMapper mapper = new ObjectMapper();
-        
-        
-        // Converting received JSON to Users
+
         Users user = mapper.readValue(user_credentials, Users.class);
-        
-        
-        // Setting response type to JSON
+
         response.setContentType("application/json");
-        
-        
-        // Adding user to List<Users>
-        if (users.size() > 20) {
-            users.remove(0);
-        }
 
         users.add(user);
         
-        // Sending List<Users> as JSON to client
-        mapper.writeValue(response.getOutputStream(), users);
+        int listSize = users.size() - 1;
+                    
+        String user_idnumber = users.get(listSize).getIdnumber();
+        String user_password = users.get(listSize).getPassword();
+
+        System.out.println("list: " + users);
+        System.out.println("list size: " + users.size());
+        System.out.println("user_idnumber: " + user_idnumber);
+        System.out.println("user_password: " + user_password);
+
+        Boolean result;
+        result = check(user_idnumber, user_password).get("server_result").getAsBoolean();
+        System.out.println("98: server_result: "+result);
         
+        if (result == true) {
+            mapper.writeValueAsString("accepted");
+            System.out.println("102: accepted");
+            
+            mapper.writeValue(response.getOutputStream(), result);
+            
+        } else if (result == false) {
+            mapper.writeValueAsString("rejected");
+            System.out.println("133: rejected");
+            
+            mapper.writeValue(response.getOutputStream(), result);
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    private static JsonObject check(String idNumber, String Password) {
+
+        try {
+
+            UsersDAO user_query = new UsersDAO();
+            Users user = user_query.getUser(idNumber, Password);
+
+            JsonObject resp = new JsonObject();
+            Gson resp_in_gson = new GsonBuilder().create();
+            
+            if (user != null) {
+                resp.addProperty("server_result", Boolean.TRUE);
+                resp_in_gson.toJson(resp);
+                System.out.println(resp);
+                return resp;
+            } else if (user == null) {
+                resp.addProperty("server_result", Boolean.FALSE);
+                resp_in_gson.toJson(resp);
+                System.out.println(resp);
+                return resp;
+            } else {
+                System.out.println("No such User with ID number : " + idNumber);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("noting");
+        return null;
+    }
+
+   
+    
+
     @Override
     public String getServletInfo() {
-        return "This java servlet takes \"ID number\" and \"password\" user credentials "
+        return "The servlet, GetAndroidRequest, takes \"ID number\" and \"password\" user credentials "
                 + "by JSON and parses, converts, assigns as a string value to add the list"
                 + "called \"users\" with a proper JSON form. ";
-    }// </editor-fold>
+    }
 
 }
