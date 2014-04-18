@@ -39,7 +39,7 @@ public class JsonCurrentInfo {
     public void GenerateCurrentInfoAsJson(String idNumber) throws SQLException
     {
         
-        File folder = new File("src\\main\\json\\", idNumber);
+        File folder = new File("src\\main\\webapp\\json\\", idNumber);
         folder.mkdir();
 
         if (!folder.exists()) {

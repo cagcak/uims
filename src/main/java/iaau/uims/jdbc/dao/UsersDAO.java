@@ -44,7 +44,7 @@ public class UsersDAO {
     public Users getUserByIDnumber(String IDnumber) throws SQLException
     {
 //      String query = RETRIEVE_USER_QUERY_BY_IDNUMBER;
-        String query = "SELECT * FROM USERS WHERE idnumber = " + IDnumber;
+        String query = "SELECT * FROM USERS WHERE idnumber = " + "'" + IDnumber + "'";
         ResultSet rs = null;
         Users user = null;
 
@@ -81,7 +81,7 @@ public class UsersDAO {
     
     public Users getUser(String IDnumber, String password) throws SQLException {
 //      String query = RETRIEVE_USER_QUERY_BY_IDNUMBER;
-        String query = "SELECT * FROM USERS WHERE idnumber = " + IDnumber + " AND password = " + password;
+        String query = "SELECT * FROM USERS WHERE idnumber = " + "'" + IDnumber + "'" + " AND password = " + "'" + password + "'";
         ResultSet rs = null;
         Users user = null;
 

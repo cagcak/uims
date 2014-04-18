@@ -32,6 +32,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -87,11 +88,16 @@ public class GetAndroidRequest extends HttpServlet {
                     
         String user_idnumber = users.get(listSize).getIdnumber();
         String user_password = users.get(listSize).getPassword();
+        
+        HttpSession session = request.getSession(true);
+        session.setAttribute("userid", user_idnumber);
+        session.setAttribute("userpassword", user_password);
 
+        System.out.println("-------------------------------------------------------------------------------");
         System.out.println("list: " + users);
         System.out.println("list size: " + users.size());
-        System.out.println("user_idnumber: " + user_idnumber);
-        System.out.println("user_password: " + user_password);
+        System.out.println("Current <user_idnumber>: " + user_idnumber);
+        System.out.println("Current <user_password>: " + user_password);
 
         Boolean result;
         result = check(user_idnumber, user_password).get("server_result").getAsBoolean();
@@ -100,13 +106,13 @@ public class GetAndroidRequest extends HttpServlet {
         if (result == true) {
             mapper.writeValueAsString("accepted");
             System.out.println("102: accepted");
-            
+            System.out.println("-------------------------------------------------------------------------------");
             mapper.writeValue(response.getOutputStream(), result);
             
         } else if (result == false) {
             mapper.writeValueAsString("rejected");
             System.out.println("133: rejected");
-            
+            System.out.println("-------------------------------------------------------------------------------");
             mapper.writeValue(response.getOutputStream(), result);
         }
     }
