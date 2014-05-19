@@ -30,6 +30,7 @@ public class PostGeneralInfoServlet extends HttpServlet
     private static final int BUFSIZE = 4096;
     private static final long serialVersionUID = 1L;
     private String GeneralInfo_path;
+    private String idNumber = "08010101865";
 
     public PostGeneralInfoServlet() {
         super();
@@ -37,7 +38,18 @@ public class PostGeneralInfoServlet extends HttpServlet
     
     public void init() 
     {
-        GeneralInfo_path = getServletContext().getRealPath("") + File.separator + "GeneralInfo.json";
+        GeneralInfo_path = getServletContext().getRealPath("")
+                + File.separator
+//                + "src"
+//                + File.separator
+//                + "main"
+//                + File.separator
+//                + "webapp"
+//                + File.separator
+                + "json"
+                + File.separator
+                + idNumber
+                + File.separator + "GeneralInfo.json";
     }
     
     @Override
@@ -70,6 +82,18 @@ public class PostGeneralInfoServlet extends HttpServlet
             GeneralInfo_outStream.write(byteBuffer, 0, length);
         }
 
+        System.out.println(getServletContext().getRealPath("")
+                + File.separator
+                + "src"
+                + File.separator
+                + "main"
+                + File.separator
+                + "webapp"
+                + File.separator
+                + "json"
+                + File.separator
+                + idNumber
+                + File.separator + "Transcript.json");
         in.close();
         GeneralInfo_outStream.close();
     }

@@ -28,13 +28,25 @@ public class PostInformationDiplomaServlet extends HttpServlet {
     private static final int BUFSIZE = 4096;
     private static final long serialVersionUID = 1L;
     private String InformationDiploma_path;
+    private String idNumber = "08010101865";
 
     public PostInformationDiplomaServlet() {
         super();
     }
 
     public void init() {
-        InformationDiploma_path = getServletContext().getRealPath("") + File.separator + "InformationDiploma.json";
+        InformationDiploma_path = getServletContext().getRealPath("")
+                + File.separator
+//                + "src"
+//                + File.separator
+//                + "main"
+//                + File.separator
+//                + "webapp"
+//                + File.separator
+                + "json"
+                + File.separator
+                + idNumber
+                + File.separator + "InformationDiploma.json";
     }
 
     @Override

@@ -1,0 +1,369 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ff60b069">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#ff60b069">
+
+            <TableLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:shrinkColumns="*"
+                android:stretchColumns="*"
+                android:background="#ff60b069"
+                android:visibility="visible">
+
+
+                <!-- Row 3 with 2 columns -->
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="@dimen/myinformation_fragment_table"
+                    android:paddingRight="@dimen/myinformation_fragment_table"
+                    android:paddingBottom="1dip"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/subject_name_head"
+                        android:text="Subject Name"
+                        android:background="#ff60b069"
+                        android:textColor="#ff184619"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:width="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="@dimen/myinformation_fragment_table"
+                    android:paddingRight="@dimen/myinformation_fragment_table"
+                    android:paddingBottom="1dip"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/subject_name"
+                        android:text="Subject Name"
+                        android:background="#ff60b069"
+                        android:textColor="#ff184619"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:width="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/subject_name_edit"
+                        android:background="#ffb5ffb7"
+                        android:textColor="#000000"
+                        android:text=""
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="@dimen/myinformation_fragment_table"
+                    android:paddingRight="@dimen/myinformation_fragment_table"
+                    android:paddingBottom="1dip"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/hours"
+                        android:text=""
+                        android:background="#ff60b069"
+                        android:textColor="#ff184619"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:width="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/hours_edit"
+                        android:background="#ffb5ffb7"
+                        android:textColor="#000000"
+                        android:text=""
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="@dimen/myinformation_fragment_table"
+                    android:paddingRight="@dimen/myinformation_fragment_table"
+                    android:paddingBottom="1dip"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/midterm"
+                        android:text=""
+                        android:background="#ff60b069"
+                        android:textColor="#ff184619"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:width="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/mid_term_edit"
+                        android:background="#ffb5ffb7"
+                        android:textColor="#000000"
+                        android:text=""
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="@dimen/myinformation_fragment_table"
+                    android:paddingRight="@dimen/myinformation_fragment_table"
+                    android:paddingBottom="1dip"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/finalview"
+                        android:text=""
+                        android:background="#ff60b069"
+                        android:textColor="#ff184619"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:width="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/finalview_edit"
+                        android:background="#ffb5ffb7"
+                        android:textColor="#000000"
+                        android:text=""
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="@dimen/myinformation_fragment_table"
+                    android:paddingRight="@dimen/myinformation_fragment_table"
+                    android:paddingBottom="1dip"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/average"
+                        android:text=""
+                        android:background="#ff60b069"
+                        android:textColor="#ff184619"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:width="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/average_edit"
+                        android:background="#ffb5ffb7"
+                        android:textColor="#000000"
+                        android:text=""
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="@dimen/myinformation_fragment_table"
+                    android:paddingRight="@dimen/myinformation_fragment_table"
+                    android:paddingBottom="1dip"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/attandance"
+                        android:text=""
+                        android:background="#ff60b069"
+                        android:textColor="#ff184619"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:width="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/attandance_edit"
+                        android:background="#ffb5ffb7"
+                        android:textColor="#000000"
+                        android:text=""
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="@dimen/myinformation_fragment_table"
+                    android:paddingRight="@dimen/myinformation_fragment_table"
+                    android:paddingBottom="1dip"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/semester"
+                        android:text=""
+                        android:background="#ff60b069"
+                        android:textColor="#ff184619"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:width="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/semester_edit"
+                        android:background="#ffb5ffb7"
+                        android:textColor="#000000"
+                        android:text=""
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="@dimen/myinformation_fragment_table"
+                    android:paddingRight="@dimen/myinformation_fragment_table"
+                    android:paddingBottom="1dip"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/academicyear"
+                        android:text=""
+                        android:background="#ff60b069"
+                        android:textColor="#ff184619"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:width="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/academicyear_edit"
+                        android:background="#ffb5ffb7"
+                        android:textColor="#000000"
+                        android:text=""
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/diploma_makepdf"
+                        android:id="@+id/generate_pdf"
+                        android:layout_weight="1"
+                        android:clickable="true" />
+                </TableRow>
+
+            </TableLayout>
+
+
+        </ScrollView>
+    </FrameLayout>
+</RelativeLayout>

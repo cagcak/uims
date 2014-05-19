@@ -31,9 +31,7 @@ public class InformationDiplomaDAO {
     
     public InformationDiploma getInfoDiplomaByIDnumber(String idNumber) throws SQLException
     {
-        String query = "SELECT INFORMATION_DIPLOMA.firstname, "
-                            + "INFORMATION_DIPLOMA.lastname, "
-                            + "INFORMATION_DIPLOMA.middlename, "
+        String query = "SELECT INFORMATION_DIPLOMA.middlename, "
                             + "INFORMATION_DIPLOMA.fullname_ru, "
                             + "INFORMATION_DIPLOMA.current_address, "
                             + "INFORMATION_DIPLOMA.passport_no, "
@@ -58,8 +56,7 @@ public class InformationDiplomaDAO {
             if (rs.next())
             {
                 infodiplom = new InformationDiploma();
-                infodiplom.setFirstname(rs.getString("firstname"));
-                infodiplom.setLastname(rs.getString("lastname"));
+                
                 infodiplom.setMiddlename(rs.getString("middlename"));
                 infodiplom.setFullname_ru(rs.getString("fullname_ru"));
                 infodiplom.setCurrent_address(rs.getString("current_address"));
@@ -69,7 +66,7 @@ public class InformationDiplomaDAO {
                 infodiplom.setThesis_project_en(rs.getString("thesis_project_en"));
                 infodiplom.setThesis_project_ru(rs.getString("thesis_project_ru"));
                 infodiplom.setThesis_project_kg(rs.getString("thesis_project_kg"));
-                infodiplom.setYear_of_school_graduation(rs.getDate("year_of_school_graduation"));
+                infodiplom.setYear_of_school_graduation(rs.getString("year_of_school_graduation"));
             }
         }finally {
             ConnectionUtility.close(rs);

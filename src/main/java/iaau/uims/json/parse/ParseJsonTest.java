@@ -182,11 +182,13 @@ public class ParseJsonTest {
 
     private static void getParsedJsonSuccessReport() throws IOException {
         ParseSuccessReport success = new ParseSuccessReport();
-        Scanner is = new Scanner(System.in);
-        System.out.println("id: ");
-        String a = is.nextLine();
+//        Scanner is = new Scanner(System.in);
+//        System.out.println("id: ");
+//        String a = is.nextLine();
+        String a = "08010101865";
         success.Parsing(a);
-        success.Printing();
+        ParseSuccessReport.Printing();
+//        success.customParse(a);
     }
 
     private static void getParsedJsonTranscript() throws IOException {

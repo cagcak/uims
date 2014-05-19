@@ -28,13 +28,17 @@ public class PostSuccessReportServlet extends HttpServlet {
     private static final int BUFSIZE = 4096;
     private static final long serialVersionUID = 1L;
     private String SuccessReport_path;
+    private String idNumber = "08010101865";
 
     public PostSuccessReportServlet() {
         super();
     }
 
     public void init() {
-        SuccessReport_path = getServletContext().getRealPath("") + File.separator + "SuccessReport.json";
+        SuccessReport_path = getServletContext().getRealPath("")
+                + File.separator + "json" + File.separator + idNumber + File.separator + "SuccessReport.json";
+
+        
     }
 
     @Override

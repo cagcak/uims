@@ -33,7 +33,7 @@ public class ParseTranscript {
     
     public void Parsing(String IDnumber) throws FileNotFoundException, IOException
     {
-        String file_location = "src\\main\\json\\" + IDnumber + "\\Transcript.json";
+        String file_location = "src\\main\\webapp\\json\\" + IDnumber + "\\Transcript.json";
         JsonReader reader = new JsonReader(new FileReader(file_location));
         
         reader.beginArray(); // [

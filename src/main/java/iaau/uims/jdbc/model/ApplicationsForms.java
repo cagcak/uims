@@ -14,6 +14,15 @@ public class ApplicationsForms {
     
     private String reference_type;
     private String language;
+    private String fullname;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
     private String USERS_idnumber;
 
     public String getReference_type() {
@@ -31,6 +40,7 @@ public class ApplicationsForms {
     public void setLanguage(String language) {
         this.language = language;
     }
+    
 
     public String getUSERS_idnumber() {
         return USERS_idnumber;

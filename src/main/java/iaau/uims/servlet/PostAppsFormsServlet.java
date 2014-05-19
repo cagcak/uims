@@ -28,13 +28,25 @@ public class PostAppsFormsServlet extends HttpServlet {
     private static final int BUFSIZE = 4096;
     private static final long serialVersionUID = 1L;
     private String AppsForms_path;
+    private String idNumber = "08010101865";
 
     public PostAppsFormsServlet() {
         super();
     }
 
     public void init() {
-        AppsForms_path = getServletContext().getRealPath("") + File.separator + "ApplicationsForms.json";
+        AppsForms_path = getServletContext().getRealPath("")
+                + File.separator
+//                + "src"
+//                + File.separator
+//                + "main"
+//                + File.separator
+//                + "webapp"
+//                + File.separator
+                + "json"
+                + File.separator
+                + idNumber
+                + File.separator + "ApplicationsForms.json";
     }
 
     @Override

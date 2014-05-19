@@ -35,67 +35,7 @@
     </repositories>
 
     <dependencies>
-        
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-            <version>2.5.1</version>
-            <scope>provided</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>2.5.1</version>
-            <exclusions>
-                <exclusion>	
-                    <groupId>org.eclipse.persistence</groupId>
-                    <artifactId>commonj.sdo</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>javax.persistence</artifactId>
-            <version>2.1.0</version>
-        </dependency>
 
-<!--       <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>org.eclipse.persistence.antlr</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>org.eclipse.persistence.asm</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>org.eclipse.persistence.core</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>org.eclipse.persistence.jpa</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>org.eclipse.persistence.jpa.modelgen</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>org.eclipse.persistence.oracle</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>javax.persistence</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -103,12 +43,7 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
-<!--        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-            <type>jar</type>
-        </dependency>-->
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -134,7 +69,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.4.0-SNAPSHOT</version>
+            <version>2.3.3</version>
             <type>jar</type>
         </dependency>
         
@@ -144,7 +79,7 @@
             <version>5.1.27</version>
         </dependency>
         
-        <dependency>
+<!--        <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
             <version>1.2.2</version>
@@ -154,14 +89,8 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>
             <version>1.2.2</version>
-        </dependency>
+        </dependency>-->
         
-        <dependency>
-            <groupId>org.awake-file</groupId>
-            <artifactId>awake-file</artifactId>
-            <version>1.0.10</version>
-            <type>jar</type>
-        </dependency>
         
     </dependencies>
 
@@ -170,7 +99,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.5.1</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
@@ -182,7 +111,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
+                <version>2.4</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
@@ -190,7 +119,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.1</version>
+                <version>2.8</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -211,6 +140,22 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9</version>
+                
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2</version>
             </plugin>
         </plugins>
     </build>

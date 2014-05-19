@@ -31,7 +31,7 @@ public class ParseGeneralInfo {
     
     public void Parsing(String IDnumber) throws FileNotFoundException, IOException
     {
-        String file_location = "src\\main\\json\\" + IDnumber + "\\GeneralInfo.json";
+        String file_location = "src\\main\\webapp\\json\\" + IDnumber + "\\GeneralInfo.json";
         JsonReader reader = new JsonReader(new FileReader(file_location));
         
         reader.beginArray(); // [

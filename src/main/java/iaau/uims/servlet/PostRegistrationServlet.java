@@ -28,13 +28,25 @@ public class PostRegistrationServlet extends HttpServlet {
     private static final int BUFSIZE = 4096;
     private static final long serialVersionUID = 1L;
     private String Registration_path;
+    private String idNumber = "08010101865";
 
     public PostRegistrationServlet() {
         super();
     }
 
     public void init() {
-        Registration_path = getServletContext().getRealPath("") + File.separator + "Registration.json";
+        Registration_path = getServletContext().getRealPath("")
+                + File.separator
+//                + "src"
+//                + File.separator
+//                + "main"
+//                + File.separator
+//                + "webapp"
+//                + File.separator
+                + "json"
+                + File.separator
+                + idNumber
+                + File.separator + "Registration.json";
     }
 
     @Override

@@ -28,13 +28,25 @@ public class PostTranscriptServlet extends HttpServlet {
     private static final int BUFSIZE = 4096;
     private static final long serialVersionUID = 1L;
     private String Transcript_path;
+    private String idNumber = "08010101865";
 
     public PostTranscriptServlet() {
         super();
     }
 
     public void init() {
-        Transcript_path = getServletContext().getRealPath("") + File.separator + "Transcript.json";
+        Transcript_path = getServletContext().getRealPath("")
+                + File.separator
+//                + "src"
+//                + File.separator
+//                + "main"
+//                + File.separator
+//                + "webapp"
+//                + File.separator
+                + "json"
+                + File.separator
+                + idNumber
+                + File.separator + "Transcript.json";
     }
 
     @Override

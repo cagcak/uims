@@ -35,7 +35,7 @@ public class ParseInformationDiploma {
     
     public void Parsing(String IDnumber) throws FileNotFoundException, IOException
     {
-        String file_location = "src\\main\\json\\" + IDnumber + "\\InformationDiploma.json";
+        String file_location = "src\\main\\webapp\\json\\" + IDnumber + "\\InformationDiploma.json";
         JsonReader reader = new JsonReader(new FileReader(file_location));
 
         reader.beginArray(); // [

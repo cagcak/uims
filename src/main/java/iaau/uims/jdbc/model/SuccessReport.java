@@ -19,7 +19,9 @@ public class SuccessReport {
     private String average;
     private String attandance;
     private String semester;
+    private String academic_year;
     private String USERS_idnumber;
+    
 
     public String getUSERS_idnumber() {
         return USERS_idnumber;
@@ -36,7 +38,7 @@ public class SuccessReport {
     public void setSemester(String semester) {
         this.semester = semester;
     }
-    private String academic_year;
+    
     private int USERS_iduser;
 
     public int getId_success() {

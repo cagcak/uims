@@ -28,13 +28,25 @@ public class PostCurrentInfoServlet extends HttpServlet {
     private static final int BUFSIZE = 4096;
     private static final long serialVersionUID = 1L;
     private String CurrentInfo_path;
+    private String idNumber = "08010101865";
 
     public PostCurrentInfoServlet() {
         super();
     }
 
     public void init() {
-        CurrentInfo_path = getServletContext().getRealPath("") + File.separator + "CurrentInfo.json";
+        CurrentInfo_path = getServletContext().getRealPath("")
+                + File.separator
+//                + "src"
+//                + File.separator
+//                + "main"
+//                + File.separator
+//                + "webapp"
+//                + File.separator
+                + "json"
+                + File.separator
+                + idNumber
+                + File.separator + "CurrentInfo.json";
     }
 
     @Override

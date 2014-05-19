@@ -9,47 +9,35 @@
 
 package iaau.uims.json.generate;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Çağrı Çakır
  */
-public class JsonCurrentInfo {
+public class JsonCurrentInfo  {
 
     public JsonCurrentInfo() {
     }
     
     private Connection connection;
     private Statement statement;
-
-    public void GenerateCurrentInfoAsJson(String idNumber) throws SQLException
+    private JsonObject jsonResponse;
+    
+    
+    public JsonObject GenerateCurrentInfoAsJson(String idNumber) throws SQLException, IOException
     {
-        
-        File folder = new File("src\\main\\webapp\\json\\", idNumber);
-        folder.mkdir();
-
-        if (!folder.exists()) {
-            try {
-                folder.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(JsonCurrentInfo.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
         String query = "SELECT CURRENT_INFO.fullname, "
                 + "CURRENT_INFO.current_year, "
                 + "CURRENT_INFO.current_semester, "
@@ -66,63 +54,46 @@ public class JsonCurrentInfo {
 
             rs = statement.executeQuery(query);
 
-            JsonObject jsonResponse = new JsonObject();
+            jsonResponse = new JsonObject();
             JsonArray data = new JsonArray();
 
             while (rs.next())
             {
-                JsonArray row = new JsonArray();
-                row.add(new JsonPrimitive(rs.getString("fullname")));
-                row.add(new JsonPrimitive(rs.getString("current_year")));
-                row.add(new JsonPrimitive(rs.getString("current_semester")));
-                row.add(new JsonPrimitive(rs.getString("current_month")));
-                row.add(new JsonPrimitive(rs.getString("current_exam")));
-                data.add(row);
+                JsonObject info = new JsonObject();
+                
+                info.addProperty("fullname", (rs.getString("fullname")));
+                info.addProperty("current_year", (rs.getString("current_year")));
+                info.addProperty("current_semester", (rs.getString("current_semester")));
+                info.addProperty("current_month", (rs.getString("current_month")));
+                info.addProperty("current_exam", (rs.getString("current_exam")));
+                
+                data.add(info);
             }
             
-            jsonResponse.add("jsonCurrentInfo", data);
+            jsonResponse.add("CurrentInfo_Response", data);
             
-            System.out.println("\n\tJsonArray form \n" + data.getAsJsonArray());
-            System.out.println("\n\tJsonObject form \n" + jsonResponse.getAsJsonObject());
-            
-            FileOutputStream output = null;
-            File file;
-            String content = data.toString();
+            // Pretty formatting json data
+            Gson gson = new GsonBuilder().
+                    setPrettyPrinting().
+                    serializeNulls().
+                    setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).
+                    create();
+            gson.toJson(jsonResponse);
 
-            try {
-
-                String folder_location = folder.toString() + "\\";
-                String filename = "CurrentInfo";
-                file = new File(folder_location + filename.toString() + ".json");
-                output = new FileOutputStream(file);
-
-                if (!file.exists()) {
-                    file.createNewFile();
-                }
-
-                byte[] content_in_bytes = content.getBytes();
-
-                output.write(content_in_bytes);
-                output.flush();
-                output.close();
-
-            } catch (IOException ex) {
-                Logger.getLogger(JsonCurrentInfo.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                try {
-                    if (output != null) {
-                        output.close();
-                    }
-                } catch (IOException e) {
-                    Logger.getLogger(JsonCurrentInfo.class.getName()).log(Level.SEVERE, null, e);
-                }
-            }
+            // Write to output the generated json data
+//            if (jsonResponse.isJsonArray()) {
+//                System.out.println(gson.toJson(jsonResponse));
+//            } else if (jsonResponse.isJsonObject()) {
+//                System.out.println(gson.toJson(jsonResponse));
+//            }
             
         } finally {
             ConnectionUtility.close(rs);
             ConnectionUtility.close(statement);
             ConnectionUtility.close(connection);
         }
+        
+        return jsonResponse;
     }
     
 }

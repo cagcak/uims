@@ -54,15 +54,23 @@ public class GetAndroidRequest extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {   
-        doPost(request, response);
-        //  initiate jackson mapper
-        ObjectMapper mapper = new ObjectMapper();
+//        String contextPath = request.getContextPath();
+//        String encodedUrl = contextPath + "/GetAndroidRequest";
+//        HttpSession session = request.getSession();
+//        session.setAttribute("user_session", "client_session");
+//        
+//        if(session.isNew())
+//        {
+            doPost(request, response);
+            //  initiate jackson mapper
+            ObjectMapper mapper = new ObjectMapper();
 
-        //  Set response type to JSON
-        response.setContentType("application/json");
+            //  Set response type to JSON
+            response.setContentType("application/json");
 
-        //  Send List<Users> as JSON to client
-        mapper.writeValue(response.getOutputStream(), users);
+            //  Send List<Users> as JSON to client
+            mapper.writeValue(response.getOutputStream(), users);
+            
     }
 
 //  doPost(): receives JSON data, parse it, map it and send back as JSON
@@ -70,6 +78,11 @@ public class GetAndroidRequest extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+//        String contextPath = request.getContextPath();
+//        String encodedUrl = contextPath + "/GetAndroidRequest";
+//        HttpSession session = request.getSession();
+//        session.setAttribute("user_session", "client_session");
+        
         // receiving JSON data from request
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String user_credentials = "";
@@ -89,9 +102,7 @@ public class GetAndroidRequest extends HttpServlet {
         String user_idnumber = users.get(listSize).getIdnumber();
         String user_password = users.get(listSize).getPassword();
         
-        HttpSession session = request.getSession(true);
-        session.setAttribute("userid", user_idnumber);
-        session.setAttribute("userpassword", user_password);
+
 
         System.out.println("-------------------------------------------------------------------------------");
         System.out.println("list: " + users);
@@ -101,17 +112,25 @@ public class GetAndroidRequest extends HttpServlet {
 
         Boolean result;
         result = check(user_idnumber, user_password).get("server_result").getAsBoolean();
-        System.out.println("98: server_result: "+result);
+        System.out.println("server_result: "+result);
         
         if (result == true) {
+//            String sessionName = (String) session.getAttribute("user_session");
             mapper.writeValueAsString("accepted");
-            System.out.println("102: accepted");
+            System.out.println("Login request is accepted");
             System.out.println("-------------------------------------------------------------------------------");
-            mapper.writeValue(response.getOutputStream(), result);
             
+            mapper.writeValue(response.getOutputStream(), result);
+//            mapper.writeValue(response.getOutputStream(), session.getId());
+            
+//            System.out.println("Session Info\nSession ID: "+session.getId()+
+//                    "Session new?:"+session.isNew()+
+//                    "Session attribute name:"+sessionName+
+//                    "Session CreationTime: "+session.getCreationTime()+
+//                    "Session LastAccessedTime: "+session.getLastAccessedTime());
         } else if (result == false) {
             mapper.writeValueAsString("rejected");
-            System.out.println("133: rejected");
+            System.out.println("Login request is rejected");
             System.out.println("-------------------------------------------------------------------------------");
             mapper.writeValue(response.getOutputStream(), result);
         }
@@ -146,9 +165,6 @@ public class GetAndroidRequest extends HttpServlet {
         System.out.println("noting");
         return null;
     }
-
-   
-    
 
     @Override
     public String getServletInfo() {

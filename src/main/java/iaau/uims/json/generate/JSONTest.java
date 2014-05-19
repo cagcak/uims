@@ -9,8 +9,12 @@
 package iaau.uims.json.generate;
 
 
+import iaau.uims.servlet.UIMSServletContext;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 /**
  *
@@ -19,14 +23,14 @@ import java.util.Scanner;
 public class JSONTest 
 {
 
-    public static void main(String[] args) throws SQLException 
+    public static void main(String[] args) throws SQLException, IOException 
     {
         actionMenu();        
     }
     
     
 /////////////////////////////  TEST MENU ACTION   //////////////////////////////       
-    private static void actionMenu() throws SQLException{
+    private static void actionMenu() throws SQLException, IOException{
         int selection;
 
         showMenu();
@@ -114,7 +118,7 @@ public class JSONTest
         System.out.println("|-1| EXIT ");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||||||");
     }
-    private static void iterateAction() throws SQLException {
+    private static void iterateAction() throws SQLException, IOException {
         System.out.println("\nContinue(c) or Exit(-1)");
         Scanner def = new Scanner(System.in);
         String default_selection = def.nextLine();
@@ -155,7 +159,7 @@ public class JSONTest
         String a = is.nextLine();
         general_info.GenerateGeneralInfoAsJson(a);
     }
-    private static void getCurrentInfoByIDnumber() throws SQLException {
+    private static void getCurrentInfoByIDnumber() throws SQLException, IOException {
         JsonCurrentInfo current_info = new JsonCurrentInfo();
         Scanner is = new Scanner(System.in);
         System.out.println("id: ");
@@ -172,9 +176,17 @@ public class JSONTest
     private static void getSuccessReportByIDnumber() throws SQLException {
         JsonSuccessReport success = new JsonSuccessReport();
         Scanner is = new Scanner(System.in);
-        System.out.println("id: ");
-        String a = is.nextLine();
-        success.GenerateSuccessReportAsJson(a);
+        String id = "08010101865";
+        System.out.println("id: " + id);
+        String year = "2012-2013";
+//        System.out.println("year: " + year);
+        String semester = "spring";
+//        System.out.println("semester: " + semester);
+//        success.GenerateSuccessReportAsJsonONsubjectNAME(id);
+//        success.GenerateSuccessReportAsJsonONacademicyear(id,year);
+//        success.GenerateSuccessReportAsJsonONsemester(id,semester);
+//        success.GenerateSuccess(id);
+        success.GenerateSuccessReport(id, year, semester);
     }
     private static void getTranscriptByIDnumber() throws SQLException {
         JsonTranscript script = new JsonTranscript();
@@ -205,4 +217,5 @@ public class JSONTest
         reg.GenerateRegistrationAsJson(a);
     }
 ////////////////////////////////////////////////////////////////////////////////
+    
 }

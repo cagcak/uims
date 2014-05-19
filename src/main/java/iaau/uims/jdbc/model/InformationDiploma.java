@@ -14,8 +14,7 @@ import java.util.Date;
 public class InformationDiploma {
     
     
-    private String firstname;
-    private String lastname;
+   
     private String middlename;
     private String fullname_ru;
     private String current_address;
@@ -25,24 +24,10 @@ public class InformationDiploma {
     private String thesis_project_en;
     private String thesis_project_ru;
     private String thesis_project_kg;
-    private Date year_of_school_graduation;
+    private String year_of_school_graduation;
     private String USERS_idnumber;
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+   
 
     public String getMiddlename() {
         return middlename;
@@ -116,11 +101,11 @@ public class InformationDiploma {
         this.thesis_project_kg = thesis_project_kg;
     }
 
-    public Date getYear_of_school_graduation() {
+    public String getYear_of_school_graduation() {
         return year_of_school_graduation;
     }
 
-    public void setYear_of_school_graduation(Date year_of_school_graduation) {
+    public void setYear_of_school_graduation(String year_of_school_graduation) {
         this.year_of_school_graduation = year_of_school_graduation;
     }
 
@@ -136,7 +121,7 @@ public class InformationDiploma {
 
     @Override
     public String toString() {
-        return "InformationDiploma{" + "firstname=" + firstname + ", lastname=" + lastname + ", middlename=" + middlename + ", fullname_ru=" + fullname_ru + ", current_address=" + current_address + ", passport_no=" + passport_no + ", birthday=" + birthday + ", phone_number=" + phone_number + ", thesis_project_en=" + thesis_project_en + ", thesis_project_ru=" + thesis_project_ru + ", thesis_project_kg=" + thesis_project_kg + ", year_of_school_graduation=" + year_of_school_graduation + ", USERS_idnumber=" + USERS_idnumber + '}';
+        return "InformationDiploma{" + "middlename=" + middlename + ", fullname_ru=" + fullname_ru + ", current_address=" + current_address + ", passport_no=" + passport_no + ", birthday=" + birthday + ", phone_number=" + phone_number + ", thesis_project_en=" + thesis_project_en + ", thesis_project_ru=" + thesis_project_ru + ", thesis_project_kg=" + thesis_project_kg + ", year_of_school_graduation=" + year_of_school_graduation + ", USERS_idnumber=" + USERS_idnumber + '}';
     }
 
     

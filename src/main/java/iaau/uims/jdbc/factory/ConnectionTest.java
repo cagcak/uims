@@ -441,8 +441,7 @@ public class ConnectionTest {
         System.out.println("language"+appsforms.getLanguage());
     }
     private static void displayDiplomaInfo(InformationDiploma info_diplom) {
-        System.out.println("firstname: "+info_diplom.getFirstname());
-        System.out.println("lastname: "+info_diplom.getLastname());
+
         System.out.println("middlename: "+info_diplom.getMiddlename());
         System.out.println("fullname_ru: "+info_diplom.getFullname_ru());
         System.out.println("current_address: "+info_diplom.getCurrent_address());

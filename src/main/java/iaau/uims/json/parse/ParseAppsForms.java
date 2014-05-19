@@ -24,7 +24,7 @@ public class ParseAppsForms {
     private String language;
 
     public void Parsing(String IDnumber) throws FileNotFoundException, IOException {
-        String file_location = "src\\main\\json\\" + IDnumber + "\\ApplicationsForms.json";
+        String file_location = "src\\main\\webapp\\json\\" + IDnumber + "\\ApplicationsForms.json";
         JsonReader reader = new JsonReader(new FileReader(file_location));
 
         reader.beginArray(); // [

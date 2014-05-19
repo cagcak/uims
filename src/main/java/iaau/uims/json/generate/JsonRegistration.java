@@ -14,6 +14,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
+import iaau.uims.servlet.UIMSServletContext;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,22 +24,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 /**
  *
  * @author Çağrı Çakır
  */
-public class JsonRegistration {
+public class JsonRegistration  {
 
     public JsonRegistration() {
     }
     
     private Connection connection;
     private Statement statement;
+    
+    private static String PATH;
+    private static String LOCAL_PATH = "C:\\Users\\Administrator\\Documents\\NetBeansProjects\\UIMS\\src\\main\\webapp\\json\\";
 
     public void GenerateRegistrationAsJson(String idNumber) throws SQLException
     {
-        File folder = new File("src\\main\\json\\", idNumber);
+        PATH = UIMSServletContext.getContextPath();
+
+        File folder = new File(LOCAL_PATH , idNumber);
         folder.mkdir();
 
         if (!folder.exists()) {
@@ -84,8 +92,8 @@ public class JsonRegistration {
 
             jsonResponse.add("jsonRegistration", data);
             
-            System.out.println("\n\tJsonArray form \n" + data.getAsJsonArray());
-            System.out.println("\n\tJsonObject form \n" + jsonResponse.getAsJsonObject());
+            System.out.println("\n\tRegistration \n" + data.getAsJsonArray());
+//            System.out.println("\n\tJsonObject form \n" + jsonResponse.getAsJsonObject());
 
             FileOutputStream output = null;
             File file;
@@ -126,4 +134,13 @@ public class JsonRegistration {
             ConnectionUtility.close(connection);
         }
     }
+    
+//    @Override
+//    public void contextInitialized(ServletContextEvent sce) {
+//        UIMSServletContext.setContextPath(sce.getServletContext().getContextPath());
+//    }
+//
+//    @Override
+//    public void contextDestroyed(ServletContextEvent sce) {
+//    }
 }

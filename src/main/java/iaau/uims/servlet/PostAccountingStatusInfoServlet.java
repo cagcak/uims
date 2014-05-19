@@ -8,6 +8,7 @@
  */
 package iaau.uims.servlet;
 
+import iaau.uims.jdbc.model.Users;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +19,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,18 +30,46 @@ public class PostAccountingStatusInfoServlet extends HttpServlet {
     private static final int BUFSIZE = 4096;
     private static final long serialVersionUID = 1L;
     private String AccountingStatusInfo_path;
+    private String idNumber = "08010101865";
 
     public PostAccountingStatusInfoServlet() {
         super();
     }
 
     public void init() {
-        AccountingStatusInfo_path = getServletContext().getRealPath("") + File.separator + "AccountingStatusInfo.json";
+        AccountingStatusInfo_path = getServletContext().getRealPath("") + 
+                File.separator + 
+//                "src" + 
+//                File.separator + 
+//                "main" + 
+//                File.separator + 
+//                "webapp" + 
+//                File.separator + 
+                "json" + 
+                File.separator + 
+                idNumber + 
+                File.separator +  "AccountingStatusInfo.json";
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+//        String idnumber = (String) request.getAttribute("forwarded_idnumber");
+//        HttpSession session = request.getSession(true);
+//        String val1 = (String) session.getValue("userid");
+//        ServletContext thisContext = getServletContext();
+//        String di = (String) thisContext.getAttribute("usr");
+//        System.out.println("Registered ID in session: " + val1 + di + idnumber);
+
+//        Users newUser = new Users();
+//        String id = newUser.getIdnumber();
+//        System.out.println("Registered ID in session: " + id);
+//        HttpSession session = request.getSession();
+//        String uId = session.getAttribute("userId").toRealPath("") + File.separator + "src" File.separator + "main" + File.separator + "webapp" + File.separator + "json" + File.separator + "json"String();
+//        System.out.println("Registered ID in session: " +uId);
+        
+        
         File AccountingStatusInfo_file = new File(AccountingStatusInfo_path);
         int length = 0;
         ServletOutputStream AccountingStatusInfo_outStream = response.getOutputStream();
@@ -66,6 +96,9 @@ public class PostAccountingStatusInfoServlet extends HttpServlet {
             AccountingStatusInfo_outStream.write(byteBuffer, 0, length);
         }
 
+//        String id = (String) request.getAttribute("id");
+//        System.out.println(id);
+        
         in.close();
         AccountingStatusInfo_outStream.close();
     }
@@ -73,7 +106,13 @@ public class PostAccountingStatusInfoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
+
+        String id = (String) request.getSession(false).getAttribute("id");
+        System.out.println(id);
+        request.getSession().removeAttribute("id");
     }
+    
+
 
     /**
      * Returns a short description of the servlet.

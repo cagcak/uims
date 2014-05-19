@@ -9,48 +9,34 @@
 
 package iaau.uims.json.generate;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Çağrı Çakır
  */
-public class JsonAccountingStatusInfo {
+public class JsonAccountingStatusInfo  {
 
     public JsonAccountingStatusInfo() {
     }
     
     private Connection connection;
     private Statement statement;
-
-    public void GenerateAccountingStatusInfoAsJson(String idNumber) throws SQLException
+    private JsonObject jsonResponse;
+    
+    
+    public JsonObject GenerateAccountingStatusInfoAsJson(String idNumber) throws SQLException
     {
-        
-        File folder = new File("src\\main\\json\\", idNumber);
-        folder.mkdir();
-
-        if (!folder.exists()) {
-            try {            
-                folder.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(JsonAccountingStatusInfo.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           
-        }        
-        
         String query = "SELECT ACCOUNTING_STATUS_INFO.registration, "
                 + "ACCOUNTING_STATUS_INFO.midterm, "
                 + "ACCOUNTING_STATUS_INFO.`final` "
@@ -65,61 +51,44 @@ public class JsonAccountingStatusInfo {
 
             rs = statement.executeQuery(query);
 
-            JsonObject jsonResponse = new JsonObject();
+            jsonResponse = new JsonObject();
             JsonArray data = new JsonArray();
 
             while (rs.next())
             {
-                JsonArray row = new JsonArray();
-                row.add(new JsonPrimitive(rs.getString("registration")));
-                row.add(new JsonPrimitive(rs.getString("midterm")));
-                row.add(new JsonPrimitive(rs.getString("final")));
-                data.add(row);
+                JsonObject info = new JsonObject();
+
+                info.addProperty("registration", (rs.getString("registration")));
+                info.addProperty("midterm", (rs.getString("midterm")));
+                info.addProperty("final", (rs.getString("final")));
+
+                data.add(info);
             }
             
-            jsonResponse.add("jsonAccountingStatusInfo", data);
+            jsonResponse.add("AccountingStatusInfo_Response", data);
             
-            System.out.println("\n\tJsonArray form \n" + data.getAsJsonArray());
-            System.out.println("\n\tJsonObject form \n" + jsonResponse.getAsJsonObject());
+            // Pretty formatting json data
+            Gson gson = new GsonBuilder().
+                    setPrettyPrinting().
+                    serializeNulls().
+                    setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).
+                    create();
+            gson.toJson(jsonResponse);
 
-            FileOutputStream output = null;
-            File file;
-            String content = data.toString();
+            // Write to output the generated json data
+//            if (jsonResponse.isJsonArray()) {
+//                System.out.println(gson.toJson(jsonResponse));
+//            } else if (jsonResponse.isJsonObject()) {
+//                System.out.println(gson.toJson(jsonResponse));
+//            }
 
-            try {
-
-                String folder_location = folder.toString() + "\\";
-                String filename = "AccountingStatusInfo";
-                file = new File(folder_location + filename.toString() + ".json");
-                output = new FileOutputStream(file);
-
-                if (!file.exists()) {
-                    file.createNewFile();
-                }
-
-                byte[] content_in_bytes = content.getBytes();
-
-                output.write(content_in_bytes);
-                output.flush();
-                output.close();
-
-            } catch (IOException ex) {
-                Logger.getLogger(JsonAccountingStatusInfo.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                try {
-                    if (output != null) {
-                        output.close();
-                    }
-                } catch (IOException e) {
-                    Logger.getLogger(JsonAccountingStatusInfo.class.getName()).log(Level.SEVERE, null, e);
-                }
-            }
-            
         } finally {
             ConnectionUtility.close(rs);
             ConnectionUtility.close(statement);
             ConnectionUtility.close(connection);
         }
+
+        return jsonResponse;
     }
-    
+
 }
