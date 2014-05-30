@@ -75,4 +75,13 @@ public class InformationDiplomaDAO {
         }
         return infodiplom;
     }
+    
+    public InformationDiploma getInfoDiplom(String idNumber, String middlename_param, String fullname_param, String phone_param, String passport_param, String address_param, String birthday_param, String graduation_param, String project_en_param, String project_ru_param, String project_kg_param) throws SQLException
+    {
+        String query = "";
+        
+        
+        
+        return null;
+    }
 }

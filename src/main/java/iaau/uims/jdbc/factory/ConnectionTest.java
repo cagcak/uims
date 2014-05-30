@@ -437,8 +437,10 @@ public class ConnectionTest {
         System.out.println("average: "+script.getAverage());
     }
     private static void displayAppsForms(ApplicationsForms appsforms) {
-        System.out.println("reference type"+appsforms.getReference_type());
-        System.out.println("language"+appsforms.getLanguage());
+        System.out.println("reference type: "+appsforms.getReference());
+        System.out.println("language: "+appsforms.getLanguage());
+        System.out.println("fullname: "+appsforms.getFullname());
+        System.out.println("User ID number: "+appsforms.getIdnumber());
     }
     private static void displayDiplomaInfo(InformationDiploma info_diplom) {
 

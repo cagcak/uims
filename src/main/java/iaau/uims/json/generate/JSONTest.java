@@ -211,10 +211,12 @@ public class JSONTest
     }
     private static void getRegistrationByIDnumber() throws SQLException {
         JsonRegistration reg = new JsonRegistration();
-        Scanner is = new Scanner(System.in);
-        System.out.println("id: ");
-        String a = is.nextLine();
-        reg.GenerateRegistrationAsJson(a);
+//        Scanner is = new Scanner(System.in);
+//        System.out.println("id: ");
+//        String a = is.nextLine();
+        String a = "08010101865";
+        String b = "Diploma Project";
+        reg.GenerateRegistrationDetailAsJson(a, b);
     }
 ////////////////////////////////////////////////////////////////////////////////
     

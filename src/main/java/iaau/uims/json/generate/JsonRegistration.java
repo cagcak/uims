@@ -9,23 +9,16 @@
 
 package iaau.uims.json.generate;
 
-import com.google.gson.JsonArray;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import iaau.uims.jdbc.factory.ConnectionFactory;
 import iaau.uims.jdbc.factory.ConnectionUtility;
-import iaau.uims.servlet.UIMSServletContext;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 
 /**
  *
@@ -38,25 +31,12 @@ public class JsonRegistration  {
     
     private Connection connection;
     private Statement statement;
+    private JsonObject jsonResponse;
+    private JsonObject jsonSubjectDetailResponse;
     
-    private static String PATH;
-    private static String LOCAL_PATH = "C:\\Users\\Administrator\\Documents\\NetBeansProjects\\UIMS\\src\\main\\webapp\\json\\";
-
-    public void GenerateRegistrationAsJson(String idNumber) throws SQLException
+    
+    public JsonObject GenerateRegistrationAsJson(String idNumber) throws SQLException
     {
-        PATH = UIMSServletContext.getContextPath();
-
-        File folder = new File(LOCAL_PATH , idNumber);
-        folder.mkdir();
-
-        if (!folder.exists()) {
-            try {
-                folder.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(JsonRegistration.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
         String query = "SELECT REGISTRATION.subject_code, "
                 + "REGISTRATION.subject_name, "
                 + "REGISTRATION.semester, "
@@ -75,57 +55,105 @@ public class JsonRegistration  {
 
             rs = statement.executeQuery(query);
 
-            JsonObject jsonResponse = new JsonObject();
-            JsonArray data = new JsonArray();
+            jsonResponse = new JsonObject();
+            JsonObject data = new JsonObject();
 
+            int node = 1;
             while (rs.next()) {
-                JsonArray row = new JsonArray();
-                row.add(new JsonPrimitive(rs.getString("subject_code")));
-                row.add(new JsonPrimitive(rs.getString("subject_name")));
-                row.add(new JsonPrimitive(rs.getString("semester")));
-                row.add(new JsonPrimitive(rs.getString("year")));
-                row.add(new JsonPrimitive(rs.getString("hours")));
-                row.add(new JsonPrimitive(rs.getString("credits")));
-                row.add(new JsonPrimitive(rs.getString("registration_status")));
-                data.add(row);
+                JsonObject subject = new JsonObject();
+
+                subject.addProperty("subject_code", (rs.getString("subject_code")));
+                subject.addProperty("subject_name", (rs.getString("subject_name")));
+                subject.addProperty("semester", (rs.getString("semester")));
+                subject.addProperty("year", (rs.getString("year")));
+                subject.addProperty("hours", (rs.getString("hours")));
+                subject.addProperty("credits", (rs.getString("credits")));
+                subject.addProperty("registration_status", (rs.getString("registration_status")));
+                
+                data.add(String.valueOf(node), subject);
+
+                node++;
             }
 
-            jsonResponse.add("jsonRegistration", data);
+            jsonResponse.add("Registration", data);
             
-            System.out.println("\n\tRegistration \n" + data.getAsJsonArray());
-//            System.out.println("\n\tJsonObject form \n" + jsonResponse.getAsJsonObject());
+            // Pretty formatting json data
+            Gson gson = new GsonBuilder().
+                    setPrettyPrinting().
+                    serializeNulls().
+                    setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).
+                    create();
+            gson.toJson(jsonResponse);
+            
+            // Write to output the generated json data
+//            if (jsonResponse.isJsonArray()) {
+//                System.out.println(gson.toJson(jsonResponse));
+//            } else if (jsonResponse.isJsonObject()) {
+//                System.out.println(gson.toJson(jsonResponse));
+//            }
 
-            FileOutputStream output = null;
-            File file;
-            String content = data.toString();
+        } finally {
+            ConnectionUtility.close(rs);
+            ConnectionUtility.close(statement);
+            ConnectionUtility.close(connection);
+        }
+    return jsonResponse;
+    }
+    
+    public JsonObject GenerateRegistrationDetailAsJson(String idnumber, String requestedSubject) throws SQLException
+    {
+        String query = "SELECT REGISTRATION.subject_code, "
+                            + "REGISTRATION.subject_name, "
+                            + "REGISTRATION.semester, "
+                            + "REGISTRATION.`year`, "
+                            + "REGISTRATION.hours, "
+                            + "REGISTRATION.credits, "
+                            + "REGISTRATION.registration_status "
+                         + "FROM REGISTRATION "
+                         + "WHERE REGISTRATION.`USERS_idnumber` = " + idnumber
+                         + " AND REGISTRATION.subject_name = " + "'" + requestedSubject + "'";
+        
+        ResultSet rs = null;
+        
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.createStatement();
 
-            try {
+            rs = statement.executeQuery(query);
+            
+            jsonSubjectDetailResponse = new JsonObject();
+            JsonObject data = new JsonObject();
+            
+            while (rs.next())
+            {
+                JsonObject subject = new JsonObject();
+                
+                subject.addProperty("subject_code", (rs.getString("subject_code")));
+                subject.addProperty("subject_name", (rs.getString("subject_name")));
+                subject.addProperty("semester", (rs.getString("semester")));
+                subject.addProperty("year", (rs.getString("year")));
+                subject.addProperty("hours", (rs.getString("hours")));
+                subject.addProperty("credits", (rs.getString("credits")));
+                subject.addProperty("registration_status", (rs.getString("registration_status")));
+                
+                data.add("RequestSubject", subject);
+            }
+            
+            jsonSubjectDetailResponse.add("RegistrationDetail", data);
+            
+            // Pretty formatting json data
+            Gson gson = new GsonBuilder().
+                    setPrettyPrinting().
+                    serializeNulls().
+                    setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).
+                    create();
+            gson.toJson(jsonSubjectDetailResponse);
 
-                String folder_location = folder.toString() + "\\";
-                String filename = "Registration";
-                file = new File(folder_location + filename.toString() + ".json");
-                output = new FileOutputStream(file);
-
-                if (!file.exists()) {
-                    file.createNewFile();
-                }
-
-                byte[] content_in_bytes = content.getBytes();
-
-                output.write(content_in_bytes);
-                output.flush();
-                output.close();
-
-            } catch (IOException ex) {
-                Logger.getLogger(JsonRegistration.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                try {
-                    if (output != null) {
-                        output.close();
-                    }
-                } catch (IOException e) {
-                    Logger.getLogger(JsonRegistration.class.getName()).log(Level.SEVERE, null, e);
-                }
+//             Write to output the generated json data
+            if (jsonSubjectDetailResponse.isJsonArray()) {
+                System.out.println(gson.toJson(jsonSubjectDetailResponse));
+            } else if (jsonSubjectDetailResponse.isJsonObject()) {
+                System.out.println(gson.toJson(jsonSubjectDetailResponse));
             }
 
         } finally {
@@ -133,14 +161,7 @@ public class JsonRegistration  {
             ConnectionUtility.close(statement);
             ConnectionUtility.close(connection);
         }
+        
+        return jsonSubjectDetailResponse;
     }
-    
-//    @Override
-//    public void contextInitialized(ServletContextEvent sce) {
-//        UIMSServletContext.setContextPath(sce.getServletContext().getContextPath());
-//    }
-//
-//    @Override
-//    public void contextDestroyed(ServletContextEvent sce) {
-//    }
 }

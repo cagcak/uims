@@ -25,7 +25,7 @@ public class ModelDiplomaInformation {
     private String thesis_project_en;
     private String thesis_project_ru;
     private String thesis_project_kg;
-    private String USERS_idnumber;
+    private String idnumber;
 
     public ModelDiplomaInformation(String middlename, String fullname_ru, String current_address, String passport_no, String birthday, String phone_number, String year_graduation, String thesis_project_en, String thesis_project_ru, String thesis_project_kg, String USERS_idnumber) {
         this.middlename = middlename;
@@ -38,22 +38,19 @@ public class ModelDiplomaInformation {
         this.thesis_project_en = thesis_project_en;
         this.thesis_project_ru = thesis_project_ru;
         this.thesis_project_kg = thesis_project_kg;
-        this.USERS_idnumber = USERS_idnumber;
+        this.idnumber = USERS_idnumber;
     }
-
-    public String getUSERS_idnumber() {
-        return USERS_idnumber;
-    }
-
-    public void setUSERS_idnumber(String USERS_idnumber) {
-        this.USERS_idnumber = USERS_idnumber;
-    }
-
-    
 
     public ModelDiplomaInformation() {
     }
+    
+    public String getIdnumber() {
+        return idnumber;
+    }
 
+    public void setIdnumber(String idnumber) {
+        this.idnumber = idnumber;
+    }
     
     public String getMiddlename() {
         return middlename;
@@ -137,7 +134,7 @@ public class ModelDiplomaInformation {
 
     @Override
     public String toString() {
-        return "ModelDiplomaInformation{" + "middlename=" + middlename + ", fullname_ru=" + fullname_ru + ", current_address=" + current_address + ", passport_no=" + passport_no + ", birthday=" + birthday + ", phone_number=" + phone_number + ", year_graduation=" + year_graduation + ", thesis_project_en=" + thesis_project_en + ", thesis_project_ru=" + thesis_project_ru + ", thesis_project_kg=" + thesis_project_kg + '}';
+        return "ModelDiplomaInformation [idnumber=" + idnumber + ", middlename=" + middlename + ", fullname_ru=" + fullname_ru + ", current_address=" + current_address + ", passport_no=" + passport_no + ", birthday=" + birthday + ", phone_number=" + phone_number + ", year_graduation=" + year_graduation + ", thesis_project_en=" + thesis_project_en + ", thesis_project_ru=" + thesis_project_ru + ", thesis_project_kg=" + thesis_project_kg + "]";
     }
     
     

@@ -112,13 +112,13 @@ public class PostTranscriptResponse extends HttpServlet {
                     create();
             gson.toJson(generatedJson);
             
-            System.out.println("Generated Transcript JSON representation");
-            System.out.println("-------------------------------------------------------------------------------------------------");
-            System.out.println(generatedJson);
-            System.out.println("-------------------------------------------------------------------------------------------------");
+                System.out.println("Generated Transcript JSON representation");
+                System.out.println("-------------------------------------------------------------------------------------------------");
+                System.out.println(generatedJson);
+                System.out.println("-------------------------------------------------------------------------------------------------");
 
-            mapper.writeValueAsString("Requested Transcript JSON data is generated");
-            response.getWriter().write(gson.toJson(generatedJson).toString());
+                mapper.writeValueAsString("Requested Transcript JSON data is generated");
+                response.getWriter().write(gson.toJson(generatedJson).toString());
         } catch (SQLException e) {
             System.out.println("SQLException: " + e);
         } catch (IOException e) {

@@ -11,26 +11,35 @@ package iaau.uims.jdbc.model;
  */
 public class ApplicationsForms {
     
-    
-    private String reference_type;
+    private String idnumber;
+    private String reference;
     private String language;
     private String fullname;
 
-    public String getFullname() {
-        return fullname;
+    public ApplicationsForms() {
     }
 
-    public void setFullname(String fullname) {
+    public ApplicationsForms(String idnumber, String reference, String language, String fullname) {
+        this.idnumber = idnumber;
+        this.reference = reference;
+        this.language = language;
         this.fullname = fullname;
     }
-    private String USERS_idnumber;
-
-    public String getReference_type() {
-        return reference_type;
+    
+    public String getIdnumber() {
+        return idnumber;
     }
 
-    public void setReference_type(String reference_type) {
-        this.reference_type = reference_type;
+    public void setIdnumber(String idnumber) {
+        this.idnumber = idnumber;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getLanguage() {
@@ -40,22 +49,19 @@ public class ApplicationsForms {
     public void setLanguage(String language) {
         this.language = language;
     }
-    
 
-    public String getUSERS_idnumber() {
-        return USERS_idnumber;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setUSERS_idnumber(String USERS_idnumber) {
-        this.USERS_idnumber = USERS_idnumber;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     @Override
     public String toString() {
-        return "ApplicationsForms{" + "reference_type=" + reference_type + ", language=" + language + ", USERS_idnumber=" + USERS_idnumber + '}';
+        return "AppsForms [idnumber=" + idnumber + ", reference=" + reference
+                + ", language=" + language + ", fullname=" + fullname + "]";
     }
-
-    
-    
     
 }

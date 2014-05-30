@@ -188,7 +188,7 @@ DROP TABLE IF EXISTS `dbUIMS`.`applications_forms` ;
 CREATE  TABLE IF NOT EXISTS `dbUIMS`.`applications_forms` (
   `reference_type` VARCHAR(45) NULL ,
   `language` VARCHAR(2) NULL ,
-  `fullname` VARCHAR(45) NULL ,
+  `fullname` VARCHAR(45) CHARACTER SET 'cp1251' COLLATE 'cp1251_general_ci' NULL ,
   `USERS_idnumber` VARCHAR(11) NOT NULL ,
   PRIMARY KEY (`USERS_idnumber`) ,
   CONSTRAINT `fk_applications_forms_USERS1`
@@ -409,6 +409,17 @@ INSERT INTO `dbUIMS`.`registration` (`id_registration`, `subject_code`, `subject
 INSERT INTO `dbUIMS`.`registration` (`id_registration`, `subject_code`, `subject_name`, `semester`, `year`, `hours`, `credits`, `registration_status`, `USERS_idnumber`) VALUES (NULL, 'TUR 354', 'Turkish Language VI (OTHS)', 'spring', '2', 2, 2, NULL, '08010101865');
 INSERT INTO `dbUIMS`.`registration` (`id_registration`, `subject_code`, `subject_name`, `semester`, `year`, `hours`, `credits`, `registration_status`, `USERS_idnumber`) VALUES (NULL, 'COM 514', 'Diploma Project', 'spring', '5', 0, 0, NULL, '08010101865');
 INSERT INTO `dbUIMS`.`registration` (`id_registration`, `subject_code`, `subject_name`, `semester`, `year`, `hours`, `credits`, `registration_status`, `USERS_idnumber`) VALUES (NULL, 'KGZ 252', 'Kyrgyz Language IV (native)', 'spring', '2', 2, 2, NULL, '08010101865');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `dbUIMS`.`applications_forms`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `dbUIMS`;
+INSERT INTO `dbUIMS`.`applications_forms` (`reference_type`, `language`, `fullname`, `USERS_idnumber`) VALUES ('Confirmation letter', 'EN', NULL, '00000000001');
+INSERT INTO `dbUIMS`.`applications_forms` (`reference_type`, `language`, `fullname`, `USERS_idnumber`) VALUES ('Transcript', NULL, NULL, '09010102234');
+INSERT INTO `dbUIMS`.`applications_forms` (`reference_type`, `language`, `fullname`, `USERS_idnumber`) VALUES ('Military Service', NULL, 'Иванов Иван', '09010102241');
 
 COMMIT;
 
